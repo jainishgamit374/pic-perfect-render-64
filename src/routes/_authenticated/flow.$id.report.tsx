@@ -29,7 +29,7 @@ type ReportEdits = {
   inspection_date: string; property_type: string;
 };
 const EMPTY: ReportEdits = {
-  report_cover_title: "", report_cover_subtitle: "", report_company: "", report_footer: "",
+  report_cover_title: "Property inspection report", report_cover_subtitle: "", report_company: "", report_footer: "",
   report_brand_primary: "blue", report_brand_secondary: "blue", client_name: "",
   inspector_name: "", property_address: "", inspection_date: "", property_type: "",
 };
@@ -44,7 +44,7 @@ const BRAND_TOKENS: Record<string, string> = {
 function fromInspection(value: Record<string, unknown> | null | undefined): ReportEdits {
   const get = (key: keyof ReportEdits) => typeof value?.[key] === "string" ? value[key] as string : "";
   return {
-    report_cover_title: get("report_cover_title"), report_cover_subtitle: get("report_cover_subtitle"),
+    report_cover_title: get("report_cover_title") || "Property inspection report", report_cover_subtitle: get("report_cover_subtitle"),
     report_company: get("report_company"), report_footer: get("report_footer"),
     report_brand_primary: get("report_brand_primary") || "blue", report_brand_secondary: get("report_brand_secondary") || "blue",
     client_name: get("client_name"), inspector_name: get("inspector_name"),
