@@ -5,8 +5,9 @@ export function EditorialPages(d: ReportData) {
   const issues = total - d.counts.normal;
   const pages = [
     <section key="cover" className="rs-page rs-ed">
-      <div className="rs-ed__top"><span>Inspection Report</span><span>No. {d.date.slice(0, 10) || "—"}</span></div>
+      <div className="rs-ed__top"><span>{d.logoUrl ? <img className="rs-brand-logo" src={d.logoUrl} alt={d.company || "Company logo"} /> : d.company || "INSPECT"}</span><span>No. {d.date.slice(0, 10) || "—"}</span></div>
       <div className="rs-ed__index">01</div>
+      <p className="rs-cover-label">{d.coverTitle} · {d.coverSubtitle}</p>
       <h1 className="rs-ed__title">{d.address}</h1>
       <div className="rs-ed__cover-grid">
         <div className="rs-ed__meta">
@@ -16,7 +17,7 @@ export function EditorialPages(d: ReportData) {
         </div>
         {d.coverUrl && <img className="rs-ed__cover-img" src={d.coverUrl} alt="" />}
       </div>
-      <div className="rs-ed__bottom"><b>{total}</b> locations <span className="rs-ed__accent">/</span> <b>{issues}</b> require attention</div>
+      <div className="rs-ed__bottom"><b>{total}</b> locations <span className="rs-ed__accent">/</span> <b>{issues}</b> require attention {d.footer && <small> · {d.footer}</small>}</div>
     </section>,
     <section key="details" className="rs-page rs-ed">
       <div className="rs-ed__top"><span>{d.address}</span><span>02</span></div>

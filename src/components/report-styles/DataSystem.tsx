@@ -5,9 +5,10 @@ export function DataSystemPages(d: ReportData) {
   const score = Math.round(100 - ((d.counts.critical * 30 + d.counts.defective * 15 + d.counts.moderate * 6 + d.counts.minor * 2) / total));
   const pages = [
     <section key="cover" className="rs-page rs-dt rs-dt--dark">
-      <div className="rs-dt__hdr"><span>SYS://INSPECTION_REPORT</span><span>{d.date || "—"}</span></div>
-      <p className="rs-dt__label">PROPERTY</p>
+      <div className="rs-dt__hdr"><span>{d.logoUrl ? <img className="rs-brand-logo" src={d.logoUrl} alt={d.company || "Company logo"} /> : d.company || "SYS://INSPECTION_REPORT"}</span><span>{d.date || "—"}</span></div>
+      <p className="rs-dt__label">{d.coverTitle}</p>
       <h1 className="rs-dt__title">{d.address}</h1>
+      <p>{d.coverSubtitle}</p>
       <div className="rs-dt__score">
         <div><p className="rs-dt__label">CONDITION INDEX</p><strong>{Math.max(0, score)}</strong><span>/100</span></div>
         <div className="rs-dt__bars">
@@ -27,6 +28,7 @@ export function DataSystemPages(d: ReportData) {
         <div><p className="rs-dt__label">TYPE</p>{d.propertyType || "—"}</div>
         <div><p className="rs-dt__label">DATAPOINTS</p>{d.findings.length}</div>
       </div>
+      {d.footer && <p>{d.footer}</p>}
     </section>,
     <section key="details" className="rs-page rs-dt">
       <div className="rs-dt__hdr"><span>01 / METADATA</span><span>{d.title}</span></div>

@@ -5,10 +5,12 @@ export function LuxuryPages(d: ReportData) {
     <section key="cover" className="rs-page rs-lx rs-lx--cover">
       {d.coverUrl ? <img className="rs-lx__bleed" src={d.coverUrl} alt="" /> : <div className="rs-lx__bleed" />}
       <div className="rs-lx__veil">
-        <p className="rs-lx__kicker">A Property Condition Study</p>
+        {d.logoUrl && <img className="rs-brand-logo" src={d.logoUrl} alt={d.company || "Company logo"} />}
+        <p className="rs-lx__kicker">{d.company || d.coverTitle}</p>
         <h1 className="rs-lx__title">{d.address}</h1>
         <div className="rs-lx__rule" />
-        <p className="rs-lx__sub">Prepared for {d.client || "the owner"} · {d.date || "—"}</p>
+        <p className="rs-lx__sub">{d.coverSubtitle} · Prepared for {d.client || "the owner"} · {d.date || "—"}</p>
+        {d.footer && <p className="rs-lx__sub">{d.footer}</p>}
       </div>
     </section>,
     <section key="details" className="rs-page rs-lx">

@@ -23,6 +23,13 @@ export type ReportFinding = {
 
 export type ReportData = {
   title: string;
+  coverTitle: string;
+  coverSubtitle: string;
+  company: string;
+  footer: string;
+  logoUrl?: string;
+  brandPrimary?: string;
+  brandSecondary?: string;
   address: string;
   client: string;
   inspector: string;
@@ -84,7 +91,7 @@ type Img = {
 type Pair = { key: string; items: Img[]; thermal?: Img; visual?: Img };
 type Insp = Record<string, unknown> | null | undefined;
 
-export function buildReportData(i: Insp, pairs: Pair[], urls: Record<string, string>): ReportData {
+export function buildReportData(i: Insp, pairs: Pair[], urls: Record<string, string>, logoUrl?: string): ReportData {
   const s = (k: string) => (i?.[k] as string | null | undefined) ?? "";
   const findings: ReportFinding[] = pairs.map((p) => {
     const f = p.items[0]!;
@@ -114,6 +121,13 @@ export function buildReportData(i: Insp, pairs: Pair[], urls: Record<string, str
   const cover = findings.find((f) => f.visualUrl)?.visualUrl ?? findings.find((f) => f.thermalUrl)?.thermalUrl;
   return {
     title: s("title") || "Property inspection",
+    coverTitle: s("report_cover_title") || "Property inspection report",
+    coverSubtitle: s("report_cover_subtitle") || "Property condition assessment",
+    company: s("report_company"),
+    footer: s("report_footer"),
+    logoUrl,
+    brandPrimary: s("report_brand_primary") || undefined,
+    brandSecondary: s("report_brand_secondary") || undefined,
     address: s("property_address") || s("title") || "Property",
     client: s("client_name"), inspector: s("inspector_name"), date, propertyType: s("property_type"),
     details, notes: s("notes") || undefined, findings, counts, coverUrl: cover,
