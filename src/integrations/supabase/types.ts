@@ -14,7 +14,134 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      inspection_images: {
+        Row: {
+          analysis_state: string
+          analyzed_at: string | null
+          confidence: number | null
+          created_at: string
+          error: string | null
+          filename: string
+          id: string
+          inspection_id: string
+          kind: string
+          location_label: string | null
+          recommendation: string | null
+          section: string | null
+          severity: Database["public"]["Enums"]["finding_severity"] | null
+          size_bytes: number | null
+          storage_path: string
+          summary: string | null
+          user_id: string
+        }
+        Insert: {
+          analysis_state?: string
+          analyzed_at?: string | null
+          confidence?: number | null
+          created_at?: string
+          error?: string | null
+          filename: string
+          id?: string
+          inspection_id: string
+          kind?: string
+          location_label?: string | null
+          recommendation?: string | null
+          section?: string | null
+          severity?: Database["public"]["Enums"]["finding_severity"] | null
+          size_bytes?: number | null
+          storage_path: string
+          summary?: string | null
+          user_id: string
+        }
+        Update: {
+          analysis_state?: string
+          analyzed_at?: string | null
+          confidence?: number | null
+          created_at?: string
+          error?: string | null
+          filename?: string
+          id?: string
+          inspection_id?: string
+          kind?: string
+          location_label?: string | null
+          recommendation?: string | null
+          section?: string | null
+          severity?: Database["public"]["Enums"]["finding_severity"] | null
+          size_bytes?: number | null
+          storage_path?: string
+          summary?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "inspection_images_inspection_id_fkey"
+            columns: ["inspection_id"]
+            isOneToOne: false
+            referencedRelation: "inspections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      inspections: {
+        Row: {
+          created_at: string
+          id: string
+          inspector_name: string | null
+          notes: string | null
+          property_address: string | null
+          status: Database["public"]["Enums"]["inspection_status"]
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          inspector_name?: string | null
+          notes?: string | null
+          property_address?: string | null
+          status?: Database["public"]["Enums"]["inspection_status"]
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          inspector_name?: string | null
+          notes?: string | null
+          property_address?: string | null
+          status?: Database["public"]["Enums"]["inspection_status"]
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          company: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +150,18 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      finding_severity:
+        | "normal"
+        | "minor"
+        | "moderate"
+        | "defective"
+        | "critical"
+      inspection_status:
+        | "draft"
+        | "processing"
+        | "review"
+        | "completed"
+        | "failed"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +288,21 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      finding_severity: [
+        "normal",
+        "minor",
+        "moderate",
+        "defective",
+        "critical",
+      ],
+      inspection_status: [
+        "draft",
+        "processing",
+        "review",
+        "completed",
+        "failed",
+      ],
+    },
   },
 } as const
