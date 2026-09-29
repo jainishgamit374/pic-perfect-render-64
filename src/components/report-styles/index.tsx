@@ -122,7 +122,7 @@ export function buildReportData(i: Insp, pairs: Pair[], urls: Record<string, str
   return {
     title: s("title") || "Property inspection",
     coverTitle: s("report_cover_title") || "Property inspection report",
-    coverSubtitle: s("report_cover_subtitle") || "Property condition assessment",
+    coverSubtitle: typeof i?.report_cover_subtitle === "string" ? i.report_cover_subtitle : "Property condition assessment",
     company: s("report_company"),
     footer: s("report_footer"),
     logoUrl,
