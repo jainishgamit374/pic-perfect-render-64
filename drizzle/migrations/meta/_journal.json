@@ -8,6 +8,13 @@
       "when": 1790699547093,
       "tag": "0000_inspection_platform_core",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790699647523,
+      "tag": "0001_inspection_images_storage_policies",
+      "breakpoints": true
     }
   ]
 }
