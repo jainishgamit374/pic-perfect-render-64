@@ -22,6 +22,7 @@ import { Route as Char91__componentChar93PreviewSplatRouteImport } from './route
 import { Route as AuthenticatedFlowIdUploadRouteImport } from './routes/_authenticated/flow.$id.upload'
 import { Route as AuthenticatedFlowIdReviewRouteImport } from './routes/_authenticated/flow.$id.review'
 import { Route as AuthenticatedFlowIdReportRouteImport } from './routes/_authenticated/flow.$id.report'
+import { Route as AuthenticatedFlowIdDesignRouteImport } from './routes/_authenticated/flow.$id.design'
 import { Route as AuthenticatedFlowIdAnalysisRouteImport } from './routes/_authenticated/flow.$id.analysis'
 
 const AuthRoute = AuthRouteImport.update({
@@ -96,6 +97,12 @@ const AuthenticatedFlowIdReportRoute =
     path: '/flow/$id/report',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedFlowIdDesignRoute =
+  AuthenticatedFlowIdDesignRouteImport.update({
+    id: '/flow/$id/design',
+    path: '/flow/$id/design',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedFlowIdAnalysisRoute =
   AuthenticatedFlowIdAnalysisRouteImport.update({
     id: '/flow/$id/analysis',
@@ -114,6 +121,7 @@ export interface FileRoutesByFullPath {
   '/inspections/new': typeof AuthenticatedInspectionsNewRoute
   '/inspections/': typeof AuthenticatedInspectionsIndexRoute
   '/flow/$id/analysis': typeof AuthenticatedFlowIdAnalysisRoute
+  '/flow/$id/design': typeof AuthenticatedFlowIdDesignRoute
   '/flow/$id/report': typeof AuthenticatedFlowIdReportRoute
   '/flow/$id/review': typeof AuthenticatedFlowIdReviewRoute
   '/flow/$id/upload': typeof AuthenticatedFlowIdUploadRoute
@@ -129,6 +137,7 @@ export interface FileRoutesByTo {
   '/inspections/new': typeof AuthenticatedInspectionsNewRoute
   '/inspections': typeof AuthenticatedInspectionsIndexRoute
   '/flow/$id/analysis': typeof AuthenticatedFlowIdAnalysisRoute
+  '/flow/$id/design': typeof AuthenticatedFlowIdDesignRoute
   '/flow/$id/report': typeof AuthenticatedFlowIdReportRoute
   '/flow/$id/review': typeof AuthenticatedFlowIdReviewRoute
   '/flow/$id/upload': typeof AuthenticatedFlowIdUploadRoute
@@ -146,6 +155,7 @@ export interface FileRoutesById {
   '/_authenticated/inspections/new': typeof AuthenticatedInspectionsNewRoute
   '/_authenticated/inspections/': typeof AuthenticatedInspectionsIndexRoute
   '/_authenticated/flow/$id/analysis': typeof AuthenticatedFlowIdAnalysisRoute
+  '/_authenticated/flow/$id/design': typeof AuthenticatedFlowIdDesignRoute
   '/_authenticated/flow/$id/report': typeof AuthenticatedFlowIdReportRoute
   '/_authenticated/flow/$id/review': typeof AuthenticatedFlowIdReviewRoute
   '/_authenticated/flow/$id/upload': typeof AuthenticatedFlowIdUploadRoute
@@ -163,6 +173,7 @@ export interface FileRouteTypes {
     | '/inspections/new'
     | '/inspections/'
     | '/flow/$id/analysis'
+    | '/flow/$id/design'
     | '/flow/$id/report'
     | '/flow/$id/review'
     | '/flow/$id/upload'
@@ -178,6 +189,7 @@ export interface FileRouteTypes {
     | '/inspections/new'
     | '/inspections'
     | '/flow/$id/analysis'
+    | '/flow/$id/design'
     | '/flow/$id/report'
     | '/flow/$id/review'
     | '/flow/$id/upload'
@@ -194,6 +206,7 @@ export interface FileRouteTypes {
     | '/_authenticated/inspections/new'
     | '/_authenticated/inspections/'
     | '/_authenticated/flow/$id/analysis'
+    | '/_authenticated/flow/$id/design'
     | '/_authenticated/flow/$id/report'
     | '/_authenticated/flow/$id/review'
     | '/_authenticated/flow/$id/upload'
@@ -300,6 +313,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFlowIdReportRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/flow/$id/design': {
+      id: '/_authenticated/flow/$id/design'
+      path: '/flow/$id/design'
+      fullPath: '/flow/$id/design'
+      preLoaderRoute: typeof AuthenticatedFlowIdDesignRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/flow/$id/analysis': {
       id: '/_authenticated/flow/$id/analysis'
       path: '/flow/$id/analysis'
@@ -317,6 +337,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedInspectionsNewRoute: typeof AuthenticatedInspectionsNewRoute
   AuthenticatedInspectionsIndexRoute: typeof AuthenticatedInspectionsIndexRoute
   AuthenticatedFlowIdAnalysisRoute: typeof AuthenticatedFlowIdAnalysisRoute
+  AuthenticatedFlowIdDesignRoute: typeof AuthenticatedFlowIdDesignRoute
   AuthenticatedFlowIdReportRoute: typeof AuthenticatedFlowIdReportRoute
   AuthenticatedFlowIdReviewRoute: typeof AuthenticatedFlowIdReviewRoute
   AuthenticatedFlowIdUploadRoute: typeof AuthenticatedFlowIdUploadRoute
@@ -329,6 +350,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedInspectionsNewRoute: AuthenticatedInspectionsNewRoute,
   AuthenticatedInspectionsIndexRoute: AuthenticatedInspectionsIndexRoute,
   AuthenticatedFlowIdAnalysisRoute: AuthenticatedFlowIdAnalysisRoute,
+  AuthenticatedFlowIdDesignRoute: AuthenticatedFlowIdDesignRoute,
   AuthenticatedFlowIdReportRoute: AuthenticatedFlowIdReportRoute,
   AuthenticatedFlowIdReviewRoute: AuthenticatedFlowIdReviewRoute,
   AuthenticatedFlowIdUploadRoute: AuthenticatedFlowIdUploadRoute,
