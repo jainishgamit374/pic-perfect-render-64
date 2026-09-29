@@ -1,9 +1,82 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import "./design-system/gentle-code-library-71de11/design-system/styles/theme.css";
+
+/* App-level layout helpers only — all values come from design-system tokens. */
+.app-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-space-lg);
 }
 
-body {
-  font-family: system-ui, -apple-system, sans-serif;
+.app-grid-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--ds-space-base);
+}
+
+.app-grid-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--ds-space-base);
+}
+
+.app-split {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--ds-space-lg);
+  align-items: start;
+}
+
+.app-row {
+  display: flex;
+  align-items: center;
+  gap: var(--ds-space-md);
+  flex-wrap: wrap;
+}
+
+.app-row--between {
+  justify-content: space-between;
+}
+
+.app-center-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ds-space-lg);
+}
+
+.app-auth-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.app-hero {
+  padding-top: var(--ds-space-5xl);
+  padding-bottom: var(--ds-space-4xl);
+  max-width: 720px;
+}
+
+.app-grid-two {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: var(--ds-space-lg);
+  align-items: start;
+  margin-top: var(--ds-space-lg);
+}
+
+.app-detail-list {
+  display: grid;
+  gap: var(--ds-space-base);
+  margin-top: var(--ds-space-base);
+}
+
+.app-grid-images {
+  margin-top: var(--ds-space-lg);
+}
+
+@media (max-width: 900px) {
+  .app-split,
+  .app-grid-two {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
