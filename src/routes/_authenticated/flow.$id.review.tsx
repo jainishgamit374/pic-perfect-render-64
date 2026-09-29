@@ -95,7 +95,7 @@ function ReviewStep() {
         </div>
 
         {shown.length === 0 ? (
-          <EmptyState title="Nothing to review" description="No photos match this filter." />
+          <EmptyState icon={<Layers />} title="Nothing to review" description="No photos match this filter." />
         ) : (
           shown.map((pair) => <PairEditor key={pair.key} pair={pair} urls={urls} roomOptions={roomOptions} onSave={(p) => void savePair(pair, p)} />)
         )}

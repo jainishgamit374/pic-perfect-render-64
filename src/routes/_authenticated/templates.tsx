@@ -169,7 +169,7 @@ function TemplatesPage() {
 
             <Card className="app-stack">
               {!selected ? (
-                <EmptyState title="No templates" description="Templates will appear here." />
+                <EmptyState icon={<FolderOpen />} title="No templates" description="Templates will appear here." />
               ) : (
                 <>
                   <div className="app-row app-row--between">
