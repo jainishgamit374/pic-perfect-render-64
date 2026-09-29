@@ -6,10 +6,10 @@ export function LuxuryPages(d: ReportData) {
       {d.coverUrl ? <img className="rs-lx__bleed" src={d.coverUrl} alt="" /> : <div className="rs-lx__bleed" />}
       <div className="rs-lx__veil">
         {d.logoUrl && <img className="rs-brand-logo" src={d.logoUrl} alt={d.company || "Company logo"} />}
-        <p className="rs-lx__kicker">{d.company || d.coverTitle}</p>
-        <h1 className="rs-lx__title">{d.address}</h1>
+        <p className="rs-lx__kicker">{d.company || "INSPECT"}</p>
+        <h1 className="rs-lx__title">{d.coverTitle}</h1>
         <div className="rs-lx__rule" />
-        <p className="rs-lx__sub">{d.coverSubtitle} · Prepared for {d.client || "the owner"} · {d.date || "—"}</p>
+        <p className="rs-lx__sub">{d.address} · {d.coverSubtitle} · Prepared for {d.client || "the owner"} · {d.date || "—"}</p>
         {d.footer && <p className="rs-lx__sub">{d.footer}</p>}
       </div>
     </section>,

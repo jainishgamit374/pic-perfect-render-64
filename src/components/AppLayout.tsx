@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
+import { useState } from "react";
 import { useNavigate, useRouterState } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { Building2, LayoutDashboard, ClipboardList, Plus, LogOut, LayoutTemplate } from "lucide-react";
+import { Building2, LayoutDashboard, ClipboardList, Plus, LogOut, LayoutTemplate, Menu, X } from "lucide-react";
 import {
   AppShell,
   Avatar,
@@ -26,6 +27,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { user } = useSession();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   async function signOut() {
     await queryClient.cancelQueries();
@@ -52,6 +54,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
             active={pathname === item.to}
             onClick={(event) => {
               event.preventDefault();
+              setMenuOpen(false);
               navigate({ to: item.to });
             }}
           >
@@ -66,7 +69,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
   const topbar = (
     <Topbar>
       <div className="app-row app-row--between app-fill">
-        <span className="ds-body-sm">INSPECT / WORKSPACE</span>
+        <span className="app-row"><span className="app-mobile-menu"><IconButton label={menuOpen ? "Close menu" : "Open menu"} icon={menuOpen ? <X /> : <Menu />} onClick={() => setMenuOpen((open) => !open)} /></span><span className="ds-body-sm">INSPECT / WORKSPACE</span></span>
         <span className="app-row">
           <Avatar name={user?.email ?? "Inspector"} />
           <IconButton label="Sign out" icon={<LogOut />} variant="ghost" onClick={signOut} />
@@ -77,6 +80,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
 
   return (
     <AppShell sidebar={sidebar} topbar={topbar}>
+      {menuOpen && <div className="app-mobile-nav">{NAV.map((item) => <NavItem key={item.to} href={item.to} active={pathname === item.to} icon={item.icon} onClick={(event) => { event.preventDefault(); setMenuOpen(false); navigate({ to: item.to }); }}>{item.label}</NavItem>)}</div>}
       {children}
     </AppShell>
   );

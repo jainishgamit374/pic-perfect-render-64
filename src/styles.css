@@ -216,7 +216,9 @@ a.app-step__link:hover .app-step__label { text-decoration: underline; }
 .app-brand-swatch--blue { background: var(--ds-brand-500); }
 .app-brand-swatch--navy { background: var(--ds-brand-900); }
 .app-brand-swatch--warm { background: var(--ds-color-caution); }
+.app-mobile-menu, .app-mobile-nav { display: none; }
 .app-print-only { display: none; }
+@media (max-width: 1024px) { .app-mobile-menu { display: inline-flex; } .app-mobile-nav { display: grid; gap: var(--ds-space-xs); padding: var(--ds-space-base); background: var(--ds-color-surface); border-bottom: 1px solid var(--ds-color-border); } }
 @media (max-width: 1100px) { .app-report-workspace { grid-template-columns: minmax(0, 1fr); } .app-report-preview { position: static; } }
 @media (max-width: 700px) { .app-dashboard-focus { flex-direction: column; align-items: start; } .app-dashboard-activity > .app-row { flex-direction: column; align-items: stretch; } .app-report-preview-sheet { justify-content: start; } }
 @media (prefers-reduced-motion: reduce) { .app-studio-page { animation: none; } }
