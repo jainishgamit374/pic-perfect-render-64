@@ -66,7 +66,7 @@ function InspectionsPage() {
           }
         />
 
-        <div className="app-row app-row--between">
+        <div className="app-row app-row--between app-inspections-tools">
           <Tabs items={TABS} value={tab} onChange={setTab} />
           <SearchInput
             placeholder="Search by title or address"

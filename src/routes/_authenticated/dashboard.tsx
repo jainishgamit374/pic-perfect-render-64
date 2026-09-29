@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { ClipboardList, AlertTriangle, Images, CheckCircle2, Upload } from "lucide-react";
+import { ClipboardList, AlertTriangle, Images, CheckCircle2, Plus, ArrowUpRight } from "lucide-react";
+import { useState } from "react";
 import {
   Button,
   Card,
@@ -12,6 +13,7 @@ import {
   StatCard,
   StatusBadge,
   SeverityBadge,
+  SearchInput,
 } from "@/design-system/gentle-code-library-71de11";
 import { AppLayout } from "@/components/AppLayout";
 import { supabase } from "@/integrations/supabase/client";
@@ -34,6 +36,7 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 
 function DashboardPage() {
   const navigate = useNavigate();
+  const [filter, setFilter] = useState("");
 
   const inspections = useQuery({ queryKey: ["inspections"], queryFn: listInspections });
 
@@ -53,20 +56,23 @@ function DashboardPage() {
     },
   });
 
-  const recent = (inspections.data ?? []).slice(0, 8);
+  const recent = (inspections.data ?? []).filter((row) => `${row.title} ${row.property_address ?? ""}`.toLowerCase().includes(filter.toLowerCase())).slice(0, 8);
+  const next = (inspections.data ?? []).find((row) => row.status !== "completed");
 
   return (
     <AppLayout>
       <PageContainer>
-        <PageHeader
+        <div className="app-dashboard-header"><PageHeader
           title="Dashboard"
-          description="Everything happening across your inspections right now."
+          description="A clear view of every property in progress."
           actions={
-            <Button leadingIcon={<Upload />} onClick={() => navigate({ to: "/inspections/new" })}>
+            <Button leadingIcon={<Plus />} onClick={() => navigate({ to: "/inspections/new" })}>
               New inspection
             </Button>
           }
-        />
+        /></div>
+
+        {next && <div className="app-dashboard-focus"><div><span className="ds-caption">PICK UP WHERE YOU LEFT OFF</span><h2 className="ds-h2">{next.title}</h2><p className="ds-body">{next.property_address || "Property address not set"} · Continue the inspection report.</p></div><Button variant="secondary" trailingIcon={<ArrowUpRight />} onClick={() => navigate({ to: ((["/flow/$id/upload","/flow/$id/upload","/flow/$id/analysis","/flow/$id/review","/flow/$id/design","/flow/$id/report"] as const)[Math.min(5, Math.max(0, (next.current_step ?? 2) - 1))]), params: { id: next.id } })}>Continue inspection</Button></div>}
 
         <div className="app-grid-stats">
           <StatCard label="Inspections" value={inspections.data?.length ?? 0} icon={<ClipboardList />} />
@@ -75,7 +81,8 @@ function DashboardPage() {
           <StatCard label="Serious findings" value={stats.data?.critical ?? 0} icon={<AlertTriangle />} />
         </div>
 
-        <Card padding="none" style={{ marginTop: "var(--ds-space-lg)" }}>
+        <section className="app-dashboard-activity"><div className="app-row app-row--between"><div><span className="ds-caption">RECENT ACTIVITY</span><h2 className="ds-h2">Inspections</h2></div><SearchInput aria-label="Filter inspections" placeholder="Filter inspections" value={filter} onChange={(event) => setFilter(event.target.value)} /></div>
+        <Card padding="none">
           {inspections.isLoading ? (
             <div style={{ padding: "var(--ds-space-card)" }}>
               <Skeleton shape="block" />
@@ -112,9 +119,10 @@ function DashboardPage() {
             />
           )}
         </Card>
+        </section>
 
-        <Card style={{ marginTop: "var(--ds-space-lg)" }}>
-          <h2 className="ds-h3">Severity legend</h2>
+        <div className="app-dashboard-key">
+          <h2 className="ds-h3">Finding severity</h2>
           <div className="app-row" style={{ marginTop: "var(--ds-space-md)" }}>
             <SeverityBadge severity="normal">Normal</SeverityBadge>
             <SeverityBadge severity="minor">Minor</SeverityBadge>
@@ -122,7 +130,7 @@ function DashboardPage() {
             <SeverityBadge severity="defective">Defective</SeverityBadge>
             <SeverityBadge severity="critical">Critical</SeverityBadge>
           </div>
-        </Card>
+        </div>
       </PageContainer>
     </AppLayout>
   );

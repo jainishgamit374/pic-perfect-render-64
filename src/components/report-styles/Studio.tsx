@@ -3,8 +3,9 @@ import { chunk, SEV_LABEL, SEVS, type ReportData } from "./index";
 export function StudioPages(d: ReportData) {
   const pages = [
     <section key="cover" className="rs-page rs-st">
-      <div className="rs-st__bar"><span>INSPECT/REPORT</span><span>{d.date || "—"}</span></div>
-      <h1 className="rs-st__title">HOUSE<br />CHECK.</h1>
+      <div className="rs-st__bar"><span>{d.logoUrl ? <img className="rs-brand-logo" src={d.logoUrl} alt={d.company || "Company logo"} /> : d.company || "INSPECT/REPORT"}</span><span>{d.date || "—"}</span></div>
+      <h1 className="rs-st__title">{d.coverTitle}</h1>
+      <p className="rs-cover-label">{d.coverSubtitle}</p>
       <div className="rs-st__cover">
         <div className="rs-st__photo">{d.coverUrl && <img src={d.coverUrl} alt="" />}</div>
         <div className="rs-st__block rs-st__block--yellow">
@@ -16,7 +17,7 @@ export function StudioPages(d: ReportData) {
           <strong className="rs-st__big">{d.findings.length}</strong>
         </div>
       </div>
-      <div className="rs-st__foot">FOR {d.client?.toUpperCase() || "CLIENT"} — BY {d.inspector?.toUpperCase() || "INSPECTOR"}</div>
+      <div className="rs-st__foot">FOR {d.client?.toUpperCase() || "CLIENT"} — BY {d.inspector?.toUpperCase() || "INSPECTOR"}{d.footer && ` · ${d.footer}`}</div>
     </section>,
     <section key="details" className="rs-page rs-st">
       <div className="rs-st__bar"><span>THE BASICS</span><span>P.02</span></div>

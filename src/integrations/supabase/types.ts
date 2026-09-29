@@ -115,6 +115,13 @@ export type Database = {
           property_address: string | null
           property_size: string | null
           property_type: string | null
+          report_brand_primary: string | null
+          report_brand_secondary: string | null
+          report_company: string | null
+          report_cover_subtitle: string | null
+          report_cover_title: string | null
+          report_footer: string | null
+          report_logo_path: string | null
           report_style: string
           state: string | null
           status: Database["public"]["Enums"]["inspection_status"]
@@ -141,6 +148,13 @@ export type Database = {
           property_address?: string | null
           property_size?: string | null
           property_type?: string | null
+          report_brand_primary?: string | null
+          report_brand_secondary?: string | null
+          report_company?: string | null
+          report_cover_subtitle?: string | null
+          report_cover_title?: string | null
+          report_footer?: string | null
+          report_logo_path?: string | null
           report_style?: string
           state?: string | null
           status?: Database["public"]["Enums"]["inspection_status"]
@@ -167,6 +181,13 @@ export type Database = {
           property_address?: string | null
           property_size?: string | null
           property_type?: string | null
+          report_brand_primary?: string | null
+          report_brand_secondary?: string | null
+          report_company?: string | null
+          report_cover_subtitle?: string | null
+          report_cover_title?: string | null
+          report_footer?: string | null
+          report_logo_path?: string | null
           report_style?: string
           state?: string | null
           status?: Database["public"]["Enums"]["inspection_status"]
