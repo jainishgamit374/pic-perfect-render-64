@@ -342,7 +342,8 @@ function InspectionDetailPage() {
                         : "Waiting",
                 ]}
               />
-            ))}
+              ),
+            )}
           </div>
         ) : (
           <div className="app-stack" style={{ marginTop: "var(--ds-space-lg)" }}>
