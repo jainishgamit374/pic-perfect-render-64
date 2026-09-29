@@ -67,7 +67,29 @@ function NewInspectionPage() {
   const set = (key: keyof Form) => (e: { target: { value: string } }) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
 
+  function validate(): Partial<Record<keyof Form, string>> {
+    const e: Partial<Record<keyof Form, string>> = {};
+    if (!form.client_name.trim()) e.client_name = "Enter the client's name";
+    if (!form.inspector_name.trim()) e.inspector_name = "Enter the inspector's name";
+    if (!form.property_address.trim()) e.property_address = "Enter the property address";
+    if (!form.city.trim()) e.city = "Enter the city";
+    if (!form.template_id) e.template_id = "Choose a property type";
+    if (!form.inspection_date) e.inspection_date = "Pick the inspection date";
+    if (!form.client_email.trim() && !form.client_phone.trim()) e.client_email = "Add an email or phone number";
+    if (form.client_email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.client_email.trim())) e.client_email = "Enter a valid email address";
+    return e;
+  }
+  const errors = tried ? validate() : {};
+  const err = (k: keyof Form) => (errors[k] ? { invalid: true, error: errors[k] } : {});
+
   async function save(mode: "draft" | "next") {
+    if (mode === "next") {
+      setTried(true);
+      if (Object.keys(validate()).length) {
+        setError(null);
+        return;
+      }
+    }
     setBusy(mode);
     setError(null);
     try {
