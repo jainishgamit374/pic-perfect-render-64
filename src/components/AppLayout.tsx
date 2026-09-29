@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { useNavigate, useRouterState } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { Building2, LayoutDashboard, ClipboardList, Upload, LogOut } from "lucide-react";
+import { Building2, LayoutDashboard, ClipboardList, Upload, LogOut, LayoutTemplate } from "lucide-react";
 import {
   AppShell,
   Avatar,
@@ -18,6 +18,7 @@ const NAV = [
   { to: "/dashboard", label: "Dashboard", icon: <LayoutDashboard /> },
   { to: "/inspections", label: "Inspections", icon: <ClipboardList /> },
   { to: "/inspections/new", label: "New inspection", icon: <Upload /> },
+  { to: "/templates", label: "Templates", icon: <LayoutTemplate /> },
 ] as const;
 
 export function AppLayout({ children }: { children: ReactNode }) {

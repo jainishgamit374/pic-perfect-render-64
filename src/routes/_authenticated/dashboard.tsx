@@ -108,7 +108,7 @@ function DashboardPage() {
               ]}
               rows={recent}
               getRowKey={(row) => row.id}
-              onRowClick={(row) => navigate({ to: "/inspections/$id", params: { id: row.id } })}
+              onRowClick={(row) => navigate({ to: ((["/flow/$id/upload","/flow/$id/upload","/flow/$id/analysis","/flow/$id/review","/flow/$id/report"] as const)[Math.min(4, Math.max(0, (row.current_step ?? 2) - 1))]), params: { id: row.id } })}
             />
           )}
         </Card>
