@@ -115,6 +115,7 @@ export type Database = {
           property_address: string | null
           property_size: string | null
           property_type: string | null
+          report_style: string
           state: string | null
           status: Database["public"]["Enums"]["inspection_status"]
           template_id: string | null
@@ -140,6 +141,7 @@ export type Database = {
           property_address?: string | null
           property_size?: string | null
           property_type?: string | null
+          report_style?: string
           state?: string | null
           status?: Database["public"]["Enums"]["inspection_status"]
           template_id?: string | null
@@ -165,6 +167,7 @@ export type Database = {
           property_address?: string | null
           property_size?: string | null
           property_type?: string | null
+          report_style?: string
           state?: string | null
           status?: Database["public"]["Enums"]["inspection_status"]
           template_id?: string | null
