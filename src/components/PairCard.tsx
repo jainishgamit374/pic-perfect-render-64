@@ -25,7 +25,7 @@ export function PairCard({
         {photos.map((img) => (
           <ImageCard
             key={img.id}
-            src={urls[img.storage_path] || undefined}
+            src={urls[img.storage_path] ?? ""}
             alt={`${img.kind === "thermal" ? "Thermal" : "Visual"} photo ${img.filename}`}
             filename={img.filename}
             kind={img.kind === "thermal" ? "thermal" : "visual"}

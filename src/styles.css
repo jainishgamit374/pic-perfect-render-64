@@ -1,4 +1,21 @@
 @import "./design-system/gentle-code-library-71de11/design-system/styles/theme.css";
+@import "./components/report-styles/report-styles.css";
+
+/* Report design picker */
+.app-design-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-lg); }
+.app-design-card { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--ds-space-lg); padding: var(--ds-space-base); background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-lg); cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; position: relative; }
+.app-design-card:hover { border-color: var(--ds-color-border-strong); box-shadow: var(--ds-shadow-sm); }
+.app-design-card:focus-visible { outline: 2px solid var(--ds-color-focus-ring); outline-offset: 2px; }
+.app-design-card[aria-checked="true"] { border-color: var(--ds-brand-500); box-shadow: 0 0 0 2px var(--ds-brand-500); }
+.app-design-thumb { border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; }
+.app-design-check { display: inline-flex; align-items: center; gap: var(--ds-space-xs); color: var(--ds-brand-500); font-weight: 600; font-size: var(--ds-text-body-sm); }
+.app-design-check svg { width: 1.1em; height: 1.1em; }
+.app-design-letter { font-size: var(--ds-text-h1); font-weight: 700; color: var(--ds-color-text-muted); line-height: 1; }
+.app-continue-bar { position: sticky; bottom: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-base); padding: var(--ds-space-base) var(--ds-space-lg); background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-lg); box-shadow: var(--ds-shadow-md); }
+.app-preview-stage { display: flex; justify-content: center; overflow: auto; background: var(--ds-color-background); border-radius: var(--ds-radius-md); padding: var(--ds-space-lg); max-height: 100%; }
+.app-report-stack { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-lg); }
+@media (max-width: 1100px) { .app-design-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 600px) { .app-design-card { grid-template-columns: minmax(0, 1fr); } }
 
 /* App-level layout helpers only — all values come from design-system tokens. */
 .app-stack {
@@ -94,7 +111,7 @@
 }
 
 /* ---- 5-step flow ---- */
-.app-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--ds-space-sm); background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-lg); padding: var(--ds-space-base); }
+.app-steps { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--ds-space-sm); background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-lg); padding: var(--ds-space-base); }
 .app-step__link { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-xs); text-align: center; color: var(--ds-color-text-muted); text-decoration: none; }
 .app-step__dot { display: inline-flex; align-items: center; justify-content: center; width: var(--ds-control-sm); height: var(--ds-control-sm); border-radius: var(--ds-radius-full); border: 1px solid var(--ds-color-border-strong); font-size: var(--ds-text-body-sm); font-weight: 600; background: var(--ds-color-surface); }
 .app-step__dot svg { width: 1em; height: 1em; }
@@ -138,7 +155,7 @@ a.app-step__link:hover .app-step__label { text-decoration: underline; }
 .app-report-photo { margin: 0; display: grid; gap: var(--ds-space-xs); }
 .app-report-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--ds-radius-md); }
 @media (max-width: 900px) {
-  .app-steps { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .app-steps { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .app-step__state { display: none; }
   .app-form-grid, .app-pair, .app-template-layout { grid-template-columns: minmax(0, 1fr); }
 }
@@ -149,3 +166,4 @@ a.app-step__link:hover .app-step__label { text-decoration: underline; }
   .app-report-finding .app-pair { break-inside: avoid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   h2.ds-h2 { break-after: avoid; }
 }
+.app-fill { width: 100%; }

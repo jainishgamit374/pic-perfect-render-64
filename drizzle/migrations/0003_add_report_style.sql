@@ -1,0 +1,1 @@
+ALTER TABLE public.inspections ADD COLUMN IF NOT EXISTS report_style text NOT NULL DEFAULT 'editorial';
