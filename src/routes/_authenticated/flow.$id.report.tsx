@@ -127,8 +127,21 @@ function ReportStep() {
 
   async function exportPdf() {
     if (dirty && !(await save())) return;
-    setPage(0);
-    window.setTimeout(() => window.print(), 100);
+    setSaving(true);
+    setError("");
+    try {
+      const sources = [...new Set([...document.querySelectorAll<HTMLImageElement>(".app-print-only img")].map((image) => image.src).filter(Boolean))];
+      await Promise.all(sources.map(async (src) => {
+        const image = new Image();
+        image.src = src;
+        await image.decode();
+      }));
+      window.print();
+    } catch {
+      setError("Some report photos could not load. Check your connection and try exporting again.");
+    } finally {
+      setSaving(false);
+    }
   }
 
   if (inspection.isLoading || images.isLoading) return <AppLayout><PageContainer><Skeleton shape="block" /></PageContainer></AppLayout>;
@@ -140,7 +153,7 @@ function ReportStep() {
         <div className="app-row">
           <Button variant="ghost" leadingIcon={<Pencil />} onClick={() => navigate({ to: "/flow/$id/review", params: { id } })}>Edit findings</Button>
           <Button variant="secondary" leadingIcon={<Palette />} onClick={() => navigate({ to: "/flow/$id/design", params: { id } })}>Change design</Button>
-          <Button leadingIcon={<Download />} onClick={() => void exportPdf()} disabled={saving}>Export PDF</Button>
+          <Button leadingIcon={<Download />} onClick={() => void exportPdf()} loading={saving}>Export PDF</Button>
         </div>
       </div>
       <div className="no-print"><StepTracker active={6} reached={6} id={id} /></div>
