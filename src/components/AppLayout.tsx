@@ -80,7 +80,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
 
   return (
     <AppShell sidebar={sidebar} topbar={topbar}>
-      {menuOpen && <div className="app-mobile-nav">{NAV.map((item) => <NavItem key={item.to} href={item.to} active={pathname === item.to} icon={item.icon} onClick={(event) => { event.preventDefault(); setMenuOpen(false); navigate({ to: item.to }); }}>{item.label}</NavItem>)}</div>}
+      {menuOpen && <nav className="app-mobile-nav" aria-label="Mobile navigation">{NAV.map((item) => <NavItem key={item.to} href={item.to} active={pathname === item.to} icon={item.icon} onClick={(event) => { event.preventDefault(); setMenuOpen(false); navigate({ to: item.to }); }}>{item.label}</NavItem>)}<div className="app-mobile-account"><Avatar name={user?.email ?? "Inspector"} /><span>{user?.email ?? "Inspector"}</span></div></nav>}
       {children}
     </AppShell>
   );
