@@ -74,9 +74,21 @@
   margin-top: var(--ds-space-lg);
 }
 
+.app-finding {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: var(--ds-space-base);
+  align-items: start;
+}
+
+.app-finding__photo {
+  min-width: 0;
+}
+
 @media (max-width: 900px) {
   .app-split,
-  .app-grid-two {
+  .app-grid-two,
+  .app-finding {
     grid-template-columns: minmax(0, 1fr);
   }
 }

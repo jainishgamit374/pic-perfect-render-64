@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate, useParams } from "@tanstack/react-router"
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Images, Play, RefreshCcw } from "lucide-react";
+import { ExternalLink, Images, Play, RefreshCcw } from "lucide-react";
 import {
   Alert,
   Button,
@@ -18,6 +18,7 @@ import {
   Tabs,
   UploadItem,
   ImageCard,
+  IconButton,
 } from "@/design-system/gentle-code-library-71de11";
 import { AppLayout } from "@/components/AppLayout";
 import { supabase } from "@/integrations/supabase/client";
@@ -216,6 +217,7 @@ function InspectionDetailPage() {
 
   const record = inspection.data;
   const urls = thumbs.data ?? {};
+  const findings = rows.filter((row) => row.summary);
 
   return (
     <AppLayout>
@@ -303,7 +305,7 @@ function InspectionDetailPage() {
           <Tabs
             items={[
               { value: "photos", label: `Photos (${rows.length})` },
-              { value: "findings", label: `Findings (${rows.filter((r) => r.summary).length})` },
+              { value: "findings", label: `Findings (${findings.length})` },
             ]}
             value={tab}
             onChange={setTab}
@@ -347,7 +349,7 @@ function InspectionDetailPage() {
           </div>
         ) : (
           <div className="app-stack" style={{ marginTop: "var(--ds-space-lg)" }}>
-            {rows.filter((r) => r.summary).length === 0 ? (
+            {findings.length === 0 ? (
               <Card padding="none">
                 <EmptyState
                   icon={<Images />}
@@ -356,27 +358,58 @@ function InspectionDetailPage() {
                 />
               </Card>
             ) : (
-              rows
-                .filter((r) => r.summary)
-                .map((row) => (
-                  <Card key={row.id}>
-                    <div className="app-row app-row--between">
-                      <h3 className="ds-h3">{row.section ?? "General"}</h3>
-                      {row.severity && <SeverityBadge severity={row.severity} />}
+              findings.map((row) => {
+                const photo = urls[row.storage_path];
+                const photoNumber = rows.indexOf(row) + 1;
+                return (
+                  <article key={row.id} className="app-finding">
+                    <div className="app-finding__photo">
+                      {photo ? (
+                        <ImageCard
+                          src={photo}
+                          alt={`Inspection photo ${photoNumber}: ${row.filename}`}
+                          filename={`${photoNumber}. ${row.filename}`}
+                          kind={row.kind === "thermal" ? "thermal" : "visual"}
+                          severity={row.severity ?? undefined}
+                          meta={row.location_label ? [row.location_label] : undefined}
+                          actions={
+                            <IconButton
+                              label={`Open ${row.filename} full size`}
+                              icon={<ExternalLink />}
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => window.open(photo, "_blank", "noopener,noreferrer")}
+                            />
+                          }
+                        />
+                      ) : thumbs.isLoading ? (
+                        <Skeleton shape="block" />
+                      ) : (
+                        <Card><p className="ds-body-sm">Photo unavailable · {row.filename}</p></Card>
+                      )}
                     </div>
-                    <p className="ds-body" style={{ marginTop: "var(--ds-space-sm)" }}>
-                      {row.summary}
-                    </p>
-                    {row.recommendation && (
-                      <p className="ds-body-sm" style={{ marginTop: "var(--ds-space-sm)" }}>
-                        <strong>Recommendation:</strong> {row.recommendation}
+                    <Card>
+                      <div className="app-row app-row--between">
+                        <h3 className="ds-h3">{row.section ?? "General"}</h3>
+                        {row.severity && <SeverityBadge severity={row.severity} />}
+                      </div>
+                      {row.location_label && (
+                        <p className="ds-caption" style={{ marginTop: "var(--ds-space-sm)" }}>
+                          {row.location_label}
+                        </p>
+                      )}
+                      <p className="ds-body" style={{ marginTop: "var(--ds-space-base)" }}>
+                        {row.summary}
                       </p>
-                    )}
-                    <p className="ds-caption" style={{ marginTop: "var(--ds-space-sm)" }}>
-                      {row.location_label ?? row.filename}
-                    </p>
-                  </Card>
-                ))
+                      {row.recommendation && (
+                        <p className="ds-body-sm" style={{ marginTop: "var(--ds-space-base)" }}>
+                          <strong>Recommendation:</strong> {row.recommendation}
+                        </p>
+                      )}
+                    </Card>
+                  </article>
+                );
+              })
             )}
           </div>
         )}
