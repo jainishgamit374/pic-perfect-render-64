@@ -72,7 +72,6 @@ function ReviewStep() {
       const f = p.items[0]!;
       const missing: string[] = [];
       if (!f.room) missing.push("room");
-      if (!f.severity) missing.push("severity");
       const obs = f.visual_observation || f.thermal_observation || p.visual?.summary || p.thermal?.summary;
       if (!obs?.trim()) missing.push("observation");
       if (!f.recommendation?.trim()) missing.push("recommendation");
@@ -110,7 +109,7 @@ function ReviewStep() {
         <StepTracker active={4} reached={inspection.data?.current_step ?? 4} id={id} />
         {incomplete > 0 ? (
           <Alert tone={tried ? "error" : "warning"} title={`${incomplete} photo pair${incomplete === 1 ? "" : "s"} still need details`}>
-            Each finding needs a room, severity, observation and recommendation before you can create the report.
+            Each finding needs a room, an observation and a recommendation before you can create the report.
           </Alert>
         ) : pairs.length > 0 ? (
           <Alert tone="success" title="All findings are complete">You can create the final report.</Alert>
