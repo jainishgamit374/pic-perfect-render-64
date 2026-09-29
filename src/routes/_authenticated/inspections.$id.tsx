@@ -320,10 +320,13 @@ function InspectionDetailPage() {
           </Card>
         ) : tab === "photos" ? (
           <div className="app-grid-images">
-            {rows.map((row) => (
+            {rows.map((row) =>
+              !urls[row.storage_path] ? (
+                <Skeleton key={row.id} shape="block" />
+              ) : (
               <ImageCard
                 key={row.id}
-                src={urls[row.storage_path] ?? ""}
+                src={urls[row.storage_path]}
                 alt={row.filename}
                 filename={row.filename}
                 kind={row.kind === "thermal" ? "thermal" : "visual"}
