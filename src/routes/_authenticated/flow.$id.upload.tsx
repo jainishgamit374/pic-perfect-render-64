@@ -111,11 +111,9 @@ function UploadStep() {
 
   if (inspection.isLoading) return <AppLayout><PageContainer><Skeleton shape="block" /></PageContainer></AppLayout>;
   const reached = inspection.data?.current_step ?? 2;
-  const failedUploads = queue.filter((q) => q.state === "error").length;
   const blockers = [
     rows.length === 0 && "Upload at least one inspection photo.",
     uploading && "Wait for all uploads to finish.",
-    !uploading && failedUploads > 0 && `${failedUploads} file${failedUploads === 1 ? "" : "s"} failed to upload — drop them again or continue without them after removing from the list.`,
   ].filter(Boolean) as string[];
 
   return (

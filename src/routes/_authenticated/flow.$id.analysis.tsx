@@ -124,7 +124,10 @@ function AnalysisStep() {
 
         {failed > 0 && !running && (
           <Alert tone="warning" title={`${failed} photo${failed === 1 ? "" : "s"} could not be analysed`}>
-            <Button size="sm" variant="secondary" leadingIcon={<RefreshCw />} onClick={() => void run(true)}>Try again</Button>
+            <span className="app-stack-sm">
+              <span>Every photo needs a finding before review. Try again, or go back to photos and remove the ones that keep failing.</span>
+              <span><Button size="sm" variant="secondary" leadingIcon={<RefreshCw />} onClick={() => void run(true)}>Try again</Button></span>
+            </span>
           </Alert>
         )}
 
@@ -136,7 +139,7 @@ function AnalysisStep() {
 
         <div className="app-row app-row--between app-footer">
           <Button variant="ghost" onClick={() => navigate({ to: "/flow/$id/upload", params: { id } })}>Back to photos</Button>
-          <Button trailingIcon={<ArrowRight />} disabled={!complete} onClick={() => navigate({ to: "/flow/$id/review", params: { id } })}>
+          <Button trailingIcon={<ArrowRight />} disabled={!complete || failed > 0} onClick={() => navigate({ to: "/flow/$id/review", params: { id } })}>
             Review findings
           </Button>
         </div>
