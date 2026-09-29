@@ -7,6 +7,17 @@
 .rs-scaled__inner { position: absolute; top: 0; left: 0; transform-origin: top left; }
 .rs-page { width: 794px; height: 1123px; overflow: hidden; position: relative; box-sizing: border-box; background: #fff; color: #111; }
 .rs-page img { display: block; object-fit: cover; }
+.rs-brand-logo { max-height: 48px; max-width: 180px; width: auto; object-fit: contain !important; }
+.rs-cover-label { font-size: 16px; font-weight: 600; text-transform: uppercase; }
+.rs-ed__index, .rs-ed__accent, .rs-ed__rec b, .rs-ed__sev.is-issue { color: var(--report-accent, #e3342f); }
+.rs-ed__top { border-color: var(--report-accent, #111); }
+.rs-st__title { font-size: 88px; line-height: 0.98; overflow-wrap: anywhere; }
+.rs-st__block--yellow, .rs-st__fix { background: var(--report-accent-secondary, #ffd23f); }
+.rs-st__block--pink { background: var(--report-accent, #ff6fb5); }
+.rs-lx__rule { background: var(--report-accent, #a08c6d); }
+.rs-lx__kicker, .rs-lx__h2 i { color: var(--report-accent, #a08c6d); }
+.rs-dt__label, .rs-dt__score strong { color: var(--report-accent, #4fd1c5); }
+.rs-dt__title { overflow-wrap: anywhere; }
 .rs-page p, .rs-page h1, .rs-page h2, .rs-page h3, .rs-page dl, .rs-page dd, .rs-page figure { margin: 0; }
 
 /* ---------- A. Editorial ---------- */
