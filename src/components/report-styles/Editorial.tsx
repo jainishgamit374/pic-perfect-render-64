@@ -7,8 +7,8 @@ export function EditorialPages(d: ReportData) {
     <section key="cover" className="rs-page rs-ed">
       <div className="rs-ed__top"><span>{d.logoUrl ? <img className="rs-brand-logo" src={d.logoUrl} alt={d.company || "Company logo"} /> : d.company || "INSPECT"}</span><span>No. {d.date.slice(0, 10) || "—"}</span></div>
       <div className="rs-ed__index">01</div>
-      <p className="rs-cover-label">{d.coverTitle} · {d.coverSubtitle}</p>
-      <h1 className="rs-ed__title">{d.address}</h1>
+      <p className="rs-cover-label">{d.address}{d.coverSubtitle ? ` · ${d.coverSubtitle}` : ""}</p>
+      <h1 className="rs-ed__title">{d.coverTitle}</h1>
       <div className="rs-ed__cover-grid">
         <div className="rs-ed__meta">
           <p><em>Prepared for</em>{d.client || "—"}</p>

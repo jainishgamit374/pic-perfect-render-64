@@ -117,7 +117,7 @@ function ReportStep() {
   async function save() {
     if (!draft.report_cover_title.trim()) { setTab("cover"); setError("Enter a cover title before saving."); return false; }
     setSaving(true); setError(""); setNotice("");
-    const { error: saveError } = await supabase.from("inspections").update({ ...draft, report_logo_path: logoPath || null }).eq("id", id);
+    const { error: saveError } = await supabase.from("inspections").update({ ...draft, inspection_date: draft.inspection_date || null, report_logo_path: logoPath || null }).eq("id", id);
     setSaving(false);
     if (saveError) { setError(saveError.message); return false; }
     setSaved(draft); setNotice("All changes saved.");
@@ -136,7 +136,7 @@ function ReportStep() {
   return <AppLayout>
     <PageContainer>
       <div className="no-print app-report-heading">
-        <div><span className="ds-caption">REPORT / {inspection.data?.title || "INSPECTION"}</span><h1 className="ds-h1">Make the report yours.</h1><p className="ds-body">Refine the document, then export the final PDF.</p></div>
+        <div><span className="ds-caption">REPORT / {inspection.data?.title || "INSPECTION"}</span><h1 className="ds-h1">Final report</h1><p className="ds-body">Refine the document, then export the final PDF.</p></div>
         <div className="app-row">
           <Button variant="ghost" leadingIcon={<Pencil />} onClick={() => navigate({ to: "/flow/$id/review", params: { id } })}>Edit findings</Button>
           <Button variant="secondary" leadingIcon={<Palette />} onClick={() => navigate({ to: "/flow/$id/design", params: { id } })}>Change design</Button>
