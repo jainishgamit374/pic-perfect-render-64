@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { useNavigate, useRouterState } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import { Building2, LayoutDashboard, ClipboardList, Upload, LogOut, LayoutTemplate } from "lucide-react";
+import { Building2, LayoutDashboard, ClipboardList, Plus, LogOut, LayoutTemplate } from "lucide-react";
 import {
   AppShell,
   Avatar,
@@ -17,7 +17,7 @@ import { useSession } from "@/lib/session";
 const NAV = [
   { to: "/dashboard", label: "Dashboard", icon: <LayoutDashboard /> },
   { to: "/inspections", label: "Inspections", icon: <ClipboardList /> },
-  { to: "/inspections/new", label: "New inspection", icon: <Upload /> },
+  { to: "/inspections/new", label: "New inspection", icon: <Plus /> },
   { to: "/templates", label: "Templates", icon: <LayoutTemplate /> },
 ] as const;
 
@@ -37,8 +37,8 @@ export function AppLayout({ children }: { children: ReactNode }) {
   const sidebar = (
     <Sidebar
       brand={
-        <span className="app-row">
-          <Building2 aria-hidden />
+        <span className="app-row app-brand">
+          <span className="app-brand-mark"><Building2 aria-hidden /></span>
           <strong>Inspect</strong>
         </span>
       }
@@ -59,16 +59,16 @@ export function AppLayout({ children }: { children: ReactNode }) {
           </NavItem>
         ))}
       </SidebarSection>
+      <div className="app-sidebar-account"><Avatar name={user?.email ?? "Inspector" /><span className="ds-body-sm">{user?.email ?? "Inspector"}</span></div>
     </Sidebar>
   );
 
   const topbar = (
     <Topbar>
-      <div className="app-row app-row--between" style={{ width: "100%" }}>
-        <span className="ds-body-sm">Property inspection reports</span>
+      <div className="app-row app-row--between app-fill">
+        <span className="ds-body-sm">INSPECT / WORKSPACE</span>
         <span className="app-row">
           <Avatar name={user?.email ?? "Inspector"} />
-          <span className="ds-body-sm">{user?.email}</span>
           <IconButton label="Sign out" icon={<LogOut />} variant="ghost" onClick={signOut} />
         </span>
       </div>
