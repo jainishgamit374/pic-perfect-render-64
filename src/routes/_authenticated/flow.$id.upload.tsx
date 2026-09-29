@@ -111,6 +111,10 @@ function UploadStep() {
 
   if (inspection.isLoading) return <AppLayout><PageContainer><Skeleton shape="block" /></PageContainer></AppLayout>;
   const reached = inspection.data?.current_step ?? 2;
+  const blockers = [
+    rows.length === 0 && "Upload at least one inspection photo.",
+    uploading && "Wait for all uploads to finish.",
+  ].filter(Boolean) as string[];
 
   return (
     <AppLayout>
@@ -168,13 +172,19 @@ function UploadStep() {
           </div>
         )}
 
+        {blockers.length > 0 && (
+          <Alert tone="warning" title="Before you can start AI analysis">
+            <ul className="app-stack-sm">{blockers.map((b) => <li key={b}>{b}</li>)}</ul>
+          </Alert>
+        )}
+
         <div className="app-row app-row--between app-footer">
           <Button variant="ghost" leadingIcon={<ArrowLeft />} onClick={() => navigate({ to: "/inspections" })}>
             Back to inspections
           </Button>
           <span className="app-row">
-            <Badge tone={rows.length ? "success" : "warning"} dot>{rows.length} images ready</Badge>
-            <Button leadingIcon={<Sparkles />} disabled={!rows.length || uploading} onClick={() => void start()}>
+            <Badge tone={blockers.length ? "warning" : "success"} dot>{rows.length} images ready</Badge>
+            <Button leadingIcon={<Sparkles />} disabled={blockers.length > 0} onClick={() => void start()}>
               Start AI analysis
             </Button>
           </span>

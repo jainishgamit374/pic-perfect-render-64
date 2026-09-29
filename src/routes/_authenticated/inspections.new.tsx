@@ -57,6 +57,7 @@ function NewInspectionPage() {
   const [form, setForm] = useState<Form>(EMPTY);
   const [busy, setBusy] = useState<"draft" | "next" | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [tried, setTried] = useState(false);
 
   useEffect(() => {
     if (!form.template_id && templates.data?.[0]) {
@@ -67,7 +68,28 @@ function NewInspectionPage() {
   const set = (key: keyof Form) => (e: { target: { value: string } }) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
 
+  function validate(): Partial<Record<keyof Form, string>> {
+    const e: Partial<Record<keyof Form, string>> = {};
+    if (!form.client_name.trim()) e.client_name = "Enter the client's name";
+    if (!form.inspector_name.trim()) e.inspector_name = "Enter the inspector's name";
+    if (!form.property_address.trim()) e.property_address = "Enter the property address";
+    if (!form.city.trim()) e.city = "Enter the city";
+    if (!form.template_id) e.template_id = "Choose a property type";
+    if (!form.inspection_date) e.inspection_date = "Pick the inspection date";
+    if (!form.client_email.trim() && !form.client_phone.trim()) e.client_email = "Add an email or phone number";
+    if (form.client_email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.client_email.trim())) e.client_email = "Enter a valid email address";
+    return e;
+  }
+  const errors = tried ? validate() : {};
+
   async function save(mode: "draft" | "next") {
+    if (mode === "next") {
+      setTried(true);
+      if (Object.keys(validate()).length) {
+        setError(null);
+        return;
+      }
+    }
     setBusy(mode);
     setError(null);
     try {
@@ -128,42 +150,47 @@ function NewInspectionPage() {
             }}
           >
             {error && <Alert tone="error" title="Could not save">{error}</Alert>}
+            {Object.keys(errors).length > 0 && (
+              <Alert tone="warning" title="Complete the required details to continue">
+                Fields marked * are required. {Object.keys(errors).length} still need attention.
+              </Alert>
+            )}
             <div className="app-form-grid">
-              <Field label="Client name" htmlFor="client_name">
-                <Input id="client_name" placeholder="e.g. John Smith" value={form.client_name} onChange={set("client_name")} />
+              <Field label="Client name *" htmlFor="client_name" error={errors.client_name}>
+                <Input id="client_name" invalid={!!errors.client_name} placeholder="e.g. John Smith" value={form.client_name} onChange={set("client_name")} />
               </Field>
-              <Field label="Inspector name" htmlFor="inspector_name">
-                <Input id="inspector_name" placeholder="e.g. Marcus Vance" value={form.inspector_name} onChange={set("inspector_name")} />
+              <Field label="Inspector name *" htmlFor="inspector_name" error={errors.inspector_name}>
+                <Input id="inspector_name" invalid={!!errors.inspector_name} placeholder="e.g. Marcus Vance" value={form.inspector_name} onChange={set("inspector_name")} />
               </Field>
               <Field label="Phone number" htmlFor="client_phone">
                 <Input id="client_phone" type="tel" placeholder="e.g. +91 94995 76736" value={form.client_phone} onChange={set("client_phone")} />
               </Field>
-              <Field label="Email address" htmlFor="client_email">
-                <Input id="client_email" type="email" placeholder="client@example.com" value={form.client_email} onChange={set("client_email")} />
+              <Field label="Email address" htmlFor="client_email" error={errors.client_email}>
+                <Input id="client_email" invalid={!!errors.client_email} type="email" placeholder="client@example.com" value={form.client_email} onChange={set("client_email")} />
               </Field>
-              <Field label="Inspection address" htmlFor="property_address" className="app-span-2">
-                <Input id="property_address" required placeholder="e.g. 742 Evergreen Boulevard" value={form.property_address} onChange={set("property_address")} />
+              <Field label="Inspection address *" htmlFor="property_address" error={errors.property_address} className="app-span-2">
+                <Input id="property_address" invalid={!!errors.property_address} placeholder="e.g. 742 Evergreen Boulevard" value={form.property_address} onChange={set("property_address")} />
               </Field>
               <Field label="PIN / ZIP code" htmlFor="pin_code">
                 <Input id="pin_code" placeholder="e.g. 396001" value={form.pin_code} onChange={set("pin_code")} />
               </Field>
-              <Field label="Property type" htmlFor="template_id" hint="Sets the rooms used in the report">
+              <Field label="Property type *" htmlFor="template_id" error={errors.template_id} hint="Sets the rooms used in the report">
                 <Select
-                  id="template_id"
+                  id="template_id" invalid={!!errors.template_id}
                   value={form.template_id}
                   onChange={set("template_id")}
                   placeholder={templates.isLoading ? "Loading…" : "Choose a template"}
                   options={(templates.data ?? []).map((t) => ({ value: t.id, label: t.user_id ? `${t.name} (mine)` : t.name }))}
                 />
               </Field>
-              <Field label="City" htmlFor="city">
-                <Input id="city" placeholder="e.g. Valsad" value={form.city} onChange={set("city")} />
+              <Field label="City *" htmlFor="city" error={errors.city}>
+                <Input id="city" invalid={!!errors.city} placeholder="e.g. Valsad" value={form.city} onChange={set("city")} />
               </Field>
               <Field label="State" htmlFor="state">
                 <Input id="state" placeholder="e.g. Gujarat" value={form.state} onChange={set("state")} />
               </Field>
-              <Field label="Date of inspection" htmlFor="inspection_date">
-                <Input id="inspection_date" type="date" value={form.inspection_date} onChange={set("inspection_date")} />
+              <Field label="Date of inspection *" htmlFor="inspection_date" error={errors.inspection_date}>
+                <Input id="inspection_date" invalid={!!errors.inspection_date} type="date" value={form.inspection_date} onChange={set("inspection_date")} />
               </Field>
               <Field label="Time of inspection" htmlFor="inspection_time">
                 <Input id="inspection_time" type="time" value={form.inspection_time} onChange={set("inspection_time")} />
