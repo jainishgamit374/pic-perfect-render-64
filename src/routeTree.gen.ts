@@ -12,12 +12,17 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedTemplatesRouteImport } from './routes/_authenticated/templates'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedInspectionsIndexRouteImport } from './routes/_authenticated/inspections.index'
 import { Route as AuthenticatedInspectionsNewRouteImport } from './routes/_authenticated/inspections.new'
 import { Route as AuthenticatedInspectionsIdRouteImport } from './routes/_authenticated/inspections.$id'
 import { Route as Char91__mockupChar93PreviewSplatRouteImport } from './routes/[__mockup].preview.$'
 import { Route as Char91__componentChar93PreviewSplatRouteImport } from './routes/[__component].preview.$'
+import { Route as AuthenticatedFlowIdUploadRouteImport } from './routes/_authenticated/flow.$id.upload'
+import { Route as AuthenticatedFlowIdReviewRouteImport } from './routes/_authenticated/flow.$id.review'
+import { Route as AuthenticatedFlowIdReportRouteImport } from './routes/_authenticated/flow.$id.report'
+import { Route as AuthenticatedFlowIdAnalysisRouteImport } from './routes/_authenticated/flow.$id.analysis'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
@@ -32,6 +37,11 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedTemplatesRoute = AuthenticatedTemplatesRouteImport.update({
+  id: '/templates',
+  path: '/templates',
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
@@ -68,26 +78,60 @@ const Char91__componentChar93PreviewSplatRoute =
     path: '/__component/preview/$',
     getParentRoute: () => rootRouteImport,
   } as any)
+const AuthenticatedFlowIdUploadRoute =
+  AuthenticatedFlowIdUploadRouteImport.update({
+    id: '/flow/$id/upload',
+    path: '/flow/$id/upload',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFlowIdReviewRoute =
+  AuthenticatedFlowIdReviewRouteImport.update({
+    id: '/flow/$id/review',
+    path: '/flow/$id/review',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFlowIdReportRoute =
+  AuthenticatedFlowIdReportRouteImport.update({
+    id: '/flow/$id/report',
+    path: '/flow/$id/report',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFlowIdAnalysisRoute =
+  AuthenticatedFlowIdAnalysisRouteImport.update({
+    id: '/flow/$id/analysis',
+    path: '/flow/$id/analysis',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/templates': typeof AuthenticatedTemplatesRoute
   '/__component/preview/$': typeof Char91__componentChar93PreviewSplatRoute
   '/__mockup/preview/$': typeof Char91__mockupChar93PreviewSplatRoute
   '/inspections/$id': typeof AuthenticatedInspectionsIdRoute
   '/inspections/new': typeof AuthenticatedInspectionsNewRoute
   '/inspections/': typeof AuthenticatedInspectionsIndexRoute
+  '/flow/$id/analysis': typeof AuthenticatedFlowIdAnalysisRoute
+  '/flow/$id/report': typeof AuthenticatedFlowIdReportRoute
+  '/flow/$id/review': typeof AuthenticatedFlowIdReviewRoute
+  '/flow/$id/upload': typeof AuthenticatedFlowIdUploadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/templates': typeof AuthenticatedTemplatesRoute
   '/__component/preview/$': typeof Char91__componentChar93PreviewSplatRoute
   '/__mockup/preview/$': typeof Char91__mockupChar93PreviewSplatRoute
   '/inspections/$id': typeof AuthenticatedInspectionsIdRoute
   '/inspections/new': typeof AuthenticatedInspectionsNewRoute
   '/inspections': typeof AuthenticatedInspectionsIndexRoute
+  '/flow/$id/analysis': typeof AuthenticatedFlowIdAnalysisRoute
+  '/flow/$id/report': typeof AuthenticatedFlowIdReportRoute
+  '/flow/$id/review': typeof AuthenticatedFlowIdReviewRoute
+  '/flow/$id/upload': typeof AuthenticatedFlowIdUploadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -95,11 +139,16 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/templates': typeof AuthenticatedTemplatesRoute
   '/__component/preview/$': typeof Char91__componentChar93PreviewSplatRoute
   '/__mockup/preview/$': typeof Char91__mockupChar93PreviewSplatRoute
   '/_authenticated/inspections/$id': typeof AuthenticatedInspectionsIdRoute
   '/_authenticated/inspections/new': typeof AuthenticatedInspectionsNewRoute
   '/_authenticated/inspections/': typeof AuthenticatedInspectionsIndexRoute
+  '/_authenticated/flow/$id/analysis': typeof AuthenticatedFlowIdAnalysisRoute
+  '/_authenticated/flow/$id/report': typeof AuthenticatedFlowIdReportRoute
+  '/_authenticated/flow/$id/review': typeof AuthenticatedFlowIdReviewRoute
+  '/_authenticated/flow/$id/upload': typeof AuthenticatedFlowIdUploadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -107,32 +156,47 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/dashboard'
+    | '/templates'
     | '/__component/preview/$'
     | '/__mockup/preview/$'
     | '/inspections/$id'
     | '/inspections/new'
     | '/inspections/'
+    | '/flow/$id/analysis'
+    | '/flow/$id/report'
+    | '/flow/$id/review'
+    | '/flow/$id/upload'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
     | '/dashboard'
+    | '/templates'
     | '/__component/preview/$'
     | '/__mockup/preview/$'
     | '/inspections/$id'
     | '/inspections/new'
     | '/inspections'
+    | '/flow/$id/analysis'
+    | '/flow/$id/report'
+    | '/flow/$id/review'
+    | '/flow/$id/upload'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/_authenticated/dashboard'
+    | '/_authenticated/templates'
     | '/__component/preview/$'
     | '/__mockup/preview/$'
     | '/_authenticated/inspections/$id'
     | '/_authenticated/inspections/new'
     | '/_authenticated/inspections/'
+    | '/_authenticated/flow/$id/analysis'
+    | '/_authenticated/flow/$id/report'
+    | '/_authenticated/flow/$id/review'
+    | '/_authenticated/flow/$id/upload'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -165,6 +229,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/templates': {
+      id: '/_authenticated/templates'
+      path: '/templates'
+      fullPath: '/templates'
+      preLoaderRoute: typeof AuthenticatedTemplatesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
@@ -208,21 +279,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof Char91__componentChar93PreviewSplatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/flow/$id/upload': {
+      id: '/_authenticated/flow/$id/upload'
+      path: '/flow/$id/upload'
+      fullPath: '/flow/$id/upload'
+      preLoaderRoute: typeof AuthenticatedFlowIdUploadRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/flow/$id/review': {
+      id: '/_authenticated/flow/$id/review'
+      path: '/flow/$id/review'
+      fullPath: '/flow/$id/review'
+      preLoaderRoute: typeof AuthenticatedFlowIdReviewRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/flow/$id/report': {
+      id: '/_authenticated/flow/$id/report'
+      path: '/flow/$id/report'
+      fullPath: '/flow/$id/report'
+      preLoaderRoute: typeof AuthenticatedFlowIdReportRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/flow/$id/analysis': {
+      id: '/_authenticated/flow/$id/analysis'
+      path: '/flow/$id/analysis'
+      fullPath: '/flow/$id/analysis'
+      preLoaderRoute: typeof AuthenticatedFlowIdAnalysisRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedTemplatesRoute: typeof AuthenticatedTemplatesRoute
   AuthenticatedInspectionsIdRoute: typeof AuthenticatedInspectionsIdRoute
   AuthenticatedInspectionsNewRoute: typeof AuthenticatedInspectionsNewRoute
   AuthenticatedInspectionsIndexRoute: typeof AuthenticatedInspectionsIndexRoute
+  AuthenticatedFlowIdAnalysisRoute: typeof AuthenticatedFlowIdAnalysisRoute
+  AuthenticatedFlowIdReportRoute: typeof AuthenticatedFlowIdReportRoute
+  AuthenticatedFlowIdReviewRoute: typeof AuthenticatedFlowIdReviewRoute
+  AuthenticatedFlowIdUploadRoute: typeof AuthenticatedFlowIdUploadRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedTemplatesRoute: AuthenticatedTemplatesRoute,
   AuthenticatedInspectionsIdRoute: AuthenticatedInspectionsIdRoute,
   AuthenticatedInspectionsNewRoute: AuthenticatedInspectionsNewRoute,
   AuthenticatedInspectionsIndexRoute: AuthenticatedInspectionsIndexRoute,
+  AuthenticatedFlowIdAnalysisRoute: AuthenticatedFlowIdAnalysisRoute,
+  AuthenticatedFlowIdReportRoute: AuthenticatedFlowIdReportRoute,
+  AuthenticatedFlowIdReviewRoute: AuthenticatedFlowIdReviewRoute,
+  AuthenticatedFlowIdUploadRoute: AuthenticatedFlowIdUploadRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
