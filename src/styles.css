@@ -145,5 +145,7 @@ a.app-step__link:hover .app-step__label { text-decoration: underline; }
 @media print {
   .no-print, .ds-sidebar, .ds-topbar, .app-steps { display: none !important; }
   .ds-shell, .ds-shell__main { display: block !important; }
-  .app-report-finding { break-inside: avoid; }
+  .app-report-finding { break-inside: auto; }
+  .app-report-finding .app-pair { break-inside: avoid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  h2.ds-h2 { break-after: avoid; }
 }
