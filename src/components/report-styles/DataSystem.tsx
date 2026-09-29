@@ -20,6 +20,7 @@ export function DataSystemPages(d: ReportData) {
           ))}
         </div>
       </div>
+      {d.coverUrl && <figure className="rs-dt__cover"><img src={d.coverUrl} alt="" /><figcaption>REF.IMG_001</figcaption></figure>}
       <div className="rs-dt__grid4">
         <div><p className="rs-dt__label">CLIENT</p>{d.client || "—"}</div>
         <div><p className="rs-dt__label">INSPECTOR</p>{d.inspector || "—"}</div>
