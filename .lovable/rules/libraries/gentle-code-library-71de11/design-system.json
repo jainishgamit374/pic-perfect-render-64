@@ -1,0 +1,1287 @@
+{
+  "meta": {
+    "name": "Gentle Code Library",
+    "package": "@ws-0hwxnxoekksa6gcafbkp/7e42a779-7d22-4b80-9afb-3498dde7dbea",
+    "version": "1.1.0",
+    "framework": "react",
+    "css_framework": "css-variables",
+    "starter_template": "custom_design_system",
+    "theme_files": [
+      "src/design-system/styles/theme.css"
+    ],
+    "source_type": "local",
+    "source_manifest": {
+      "#enrichment": "d755744cc5fa4a815fafa625fc8780b9bba1b8f0396c11039d8cffc6526881b6",
+      ".gitignore": "6059213806e442947666752f3db6bfdc",
+      ".lovable/meta.yaml": "731dc53c4191bd35cabf4a0af7095d7f",
+      ".lovable/sources.yaml": "1b62005cb01c2413aacc02b0f9500c65",
+      ".lovable/system.md": "72e38dbbeb599a479b7260032fde65b3",
+      "AGENTS.md": "1f149faad7647e9a56bacee4c690a0ae",
+      "README.md": "d19675c449605f23c7cfa133c69b398b",
+      "bunfig.toml": "25f4c8696b22b0943db7191e0cdf7942",
+      "eslint.config.js": "07a67437fb1a45ab36d6de0145ff09de",
+      "lovable.toml": "9636c1bf32f9901bfba4eabb92981217",
+      "mockupPreviewPlugin.ts": "70d01fe16b7ca25f16ff6bdb97f08b0b",
+      "package.json": "dcafb7b8e8248e093f4fe1a9b6ac1312",
+      "public/favicon.ico": "9f504444f85a5af2eef9264b02ae40be",
+      "src/design-system/components/actions.tsx": "7560b2cc58fa457f2377fdf90c7d657b",
+      "src/design-system/components/data.tsx": "0e11f1c20afe65d1575af909b9ecd307",
+      "src/design-system/components/feedback.tsx": "b3388ce2f8ccae2a4a1cc024dce393c0",
+      "src/design-system/components/forms.tsx": "d0b21f52319d4acc7b06c283891df49c",
+      "src/design-system/components/layout.tsx": "430e51cc2761355f0fa5fb2071db1561",
+      "src/design-system/components/media.tsx": "e499b21f6a3266b3f45e4fbf3815ffbe",
+      "src/design-system/lib/cn.ts": "15cdbd768fb3d338658280057d275ac4",
+      "src/design-system/styles/theme.css": "38c49c24b5cfa60f78a518091e2cb26d",
+      "src/index.ts": "f463f5bb5cac83da6b3b17d8781f5fb4",
+      "src/mockup-preview.d.ts": "ae9d81e2b8514e13fd59b5b6bece9a64",
+      "src/routeTree.gen.ts": "4fd75eb72aeb2d60f12add8cac402a7e",
+      "src/router.tsx": "8f905e713b0eba7fa8148b7995a708c9",
+      "src/routes/[__component].preview.$.tsx": "e4bf310e591541d31abf0cfeeb1121a4",
+      "src/routes/[__mockup].preview.$.tsx": "5d9f42470848aa60148f20f9580e240e",
+      "src/routes/__root.tsx": "53efee1ee30309e4c573eb3bab91147e",
+      "src/routes/index.tsx": "72b6100fb777d14ac302802a9a7e7719",
+      "src/styles.css": "d41d8cd98f00b204e9800998ecf8427e",
+      "tsconfig.json": "994abf64c2b9f78b568879f80ed0170e",
+      "vite.config.ts": "a99d983076495f848761d0f97f17062a",
+      "wrangler.jsonc": "680b897d48e44bcc65fe437c29b38f3b"
+    },
+    "pipeline_version": 8
+  },
+  "tokens": {
+    "color": [
+      {
+        "name": "--ds-brand-900",
+        "raw": "#003087",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-brand-700",
+        "raw": "#0034d3",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-brand-500",
+        "raw": "#1a4bd3",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-brand-300",
+        "raw": "#99ccff",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-brand-100",
+        "raw": "#eaf4ff",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-cream-50",
+        "raw": "#f2ece1",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-focus-ring",
+        "raw": "rgba(153, 204, 255, 0.33)",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-background",
+        "raw": "#f7f8fa",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-surface",
+        "raw": "#ffffff",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-surface-hover",
+        "raw": "#f8fafd",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-border",
+        "raw": "#e2e5e9",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-border-input",
+        "raw": "#d9dde3",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-border-strong",
+        "raw": "#cbd0d7",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-success",
+        "raw": "#2e8b57",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-success-soft",
+        "raw": "#e8f4ee",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-warning",
+        "raw": "#c98500",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-warning-soft",
+        "raw": "#fbf3e2",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-caution",
+        "raw": "#b89400",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-caution-soft",
+        "raw": "#fbf7dc",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-danger-orange",
+        "raw": "#d9622b",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-danger-orange-soft",
+        "raw": "#fcede5",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-error",
+        "raw": "#d64545",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-error-hover",
+        "raw": "#b83535",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-error-soft",
+        "raw": "#fbeaea",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-info",
+        "raw": "#2672d8",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-info-soft",
+        "raw": "#e8f1fc",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-neutral-soft",
+        "raw": "#eff1f4",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-overlay",
+        "raw": "rgba(17, 19, 24, 0.45)",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--primary",
+        "raw": "hover:not(:disabled)",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--secondary",
+        "raw": "hover:not(:disabled)",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--destructive",
+        "raw": "hover:not(:disabled)",
+        "source": "src/design-system/styles/theme.css"
+      }
+    ],
+    "spacing": [
+      {
+        "name": "--ds-space-xs",
+        "raw": "4px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-space-sm",
+        "raw": "8px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-space-md",
+        "raw": "12px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-space-base",
+        "raw": "16px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-space-card",
+        "raw": "20px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-space-lg",
+        "raw": "24px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-space-xl",
+        "raw": "32px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-space-2xl",
+        "raw": "40px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-space-3xl",
+        "raw": "48px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-space-4xl",
+        "raw": "64px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-space-5xl",
+        "raw": "80px",
+        "source": "src/design-system/styles/theme.css"
+      }
+    ],
+    "typography": [
+      {
+        "name": "--ds-color-text-primary",
+        "raw": "#111318",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-text-secondary",
+        "raw": "#5f636b",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-text-muted",
+        "raw": "#8a8f98",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-color-text-inverse",
+        "raw": "#ffffff",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-font-sans",
+        "raw": "Inter, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-text-display",
+        "raw": "32px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-text-h1",
+        "raw": "28px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-text-h2",
+        "raw": "22px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-text-h3",
+        "raw": "18px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-text-body-lg",
+        "raw": "16px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-text-body",
+        "raw": "14px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-text-body-sm",
+        "raw": "13px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-text-caption",
+        "raw": "12px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-leading-body",
+        "raw": "1.55",
+        "source": "src/design-system/styles/theme.css"
+      }
+    ],
+    "radius": [
+      {
+        "name": "--ds-radius-sm",
+        "raw": "6px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-radius-md",
+        "raw": "8px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-radius-lg",
+        "raw": "12px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-radius-xl",
+        "raw": "16px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-radius-2xl",
+        "raw": "20px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-radius-full",
+        "raw": "999px",
+        "source": "src/design-system/styles/theme.css"
+      }
+    ],
+    "shadow": [
+      {
+        "name": "--ds-shadow-sm",
+        "raw": "0 1px 2px rgba(0, 0, 0, 0.04)",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-shadow-md",
+        "raw": "0 4px 12px rgba(0, 0, 0, 0.06)",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-shadow-lg",
+        "raw": "0 12px 32px rgba(0, 0, 0, 0.1)",
+        "source": "src/design-system/styles/theme.css"
+      }
+    ],
+    "other": [
+      {
+        "name": "--ds-leading-tight",
+        "raw": "1.25",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-control-sm",
+        "raw": "32px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-control-md",
+        "raw": "40px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-control-lg",
+        "raw": "44px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-sidebar-width",
+        "raw": "248px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-topbar-height",
+        "raw": "64px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ds-table-row",
+        "raw": "52px",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--ghost",
+        "raw": "hover:not(:disabled)",
+        "source": "src/design-system/styles/theme.css"
+      },
+      {
+        "name": "--interactive",
+        "raw": "hover",
+        "source": "src/design-system/styles/theme.css"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Button",
+      "file": "src/design-system/components/actions.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "variant",
+          "type": "enum",
+          "values": [
+            "primary",
+            "secondary",
+            "ghost",
+            "destructive"
+          ],
+          "default": "primary"
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "values": [
+            "sm",
+            "md",
+            "lg"
+          ],
+          "default": "md"
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "default": "false"
+        },
+        {
+          "name": "leadingIcon",
+          "type": "any"
+        },
+        {
+          "name": "trailingIcon",
+          "type": "any"
+        }
+      ]
+    },
+    {
+      "name": "IconButton",
+      "file": "src/design-system/components/actions.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "default": "Loading",
+          "required": true
+        },
+        {
+          "name": "icon",
+          "type": "any",
+          "required": true
+        },
+        {
+          "name": "variant",
+          "type": "enum",
+          "values": [
+            "primary",
+            "secondary",
+            "ghost",
+            "destructive"
+          ],
+          "default": "primary"
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "values": [
+            "sm",
+            "md",
+            "lg"
+          ],
+          "default": "md"
+        }
+      ]
+    },
+    {
+      "name": "Spinner",
+      "file": "src/design-system/components/actions.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "size",
+          "type": "enum",
+          "values": [
+            "sm",
+            "md",
+            "lg"
+          ],
+          "default": "md"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "Loading"
+        }
+      ]
+    },
+    {
+      "name": "Field",
+      "file": "src/design-system/components/forms.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "label",
+          "type": "string"
+        },
+        {
+          "name": "hint",
+          "type": "string"
+        },
+        {
+          "name": "error",
+          "type": "string"
+        },
+        {
+          "name": "htmlFor",
+          "type": "string"
+        },
+        {
+          "name": "children",
+          "type": "any",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Input",
+      "file": "src/design-system/components/forms.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "size",
+          "type": "enum",
+          "values": [
+            "md",
+            "lg"
+          ],
+          "default": "lg"
+        },
+        {
+          "name": "invalid",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "Textarea",
+      "file": "src/design-system/components/forms.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "invalid",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "Select",
+      "file": "src/design-system/components/forms.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "options",
+          "type": "any",
+          "required": true
+        },
+        {
+          "name": "placeholder",
+          "type": "string"
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "values": [
+            "md",
+            "lg"
+          ],
+          "default": "lg"
+        },
+        {
+          "name": "invalid",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "SearchInput",
+      "file": "src/design-system/components/forms.tsx",
+      "import_path": ""
+    },
+    {
+      "name": "Checkbox",
+      "file": "src/design-system/components/forms.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "label",
+          "type": "any",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Radio",
+      "file": "src/design-system/components/forms.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "label",
+          "type": "any",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Badge",
+      "file": "src/design-system/components/data.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "tone",
+          "type": "enum",
+          "values": [
+            "neutral",
+            "brand",
+            "success",
+            "info",
+            "caution",
+            "warning",
+            "danger-orange",
+            "error"
+          ],
+          "default": "neutral"
+        },
+        {
+          "name": "dot",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "StatusBadge",
+      "file": "src/design-system/components/data.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "status",
+          "type": "enum",
+          "values": [
+            "completed",
+            "processing",
+            "review",
+            "failed",
+            "draft"
+          ],
+          "required": true
+        },
+        {
+          "name": "children",
+          "type": "any"
+        }
+      ]
+    },
+    {
+      "name": "SeverityBadge",
+      "file": "src/design-system/components/data.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "severity",
+          "type": "enum",
+          "values": [
+            "normal",
+            "minor",
+            "moderate",
+            "defective",
+            "critical"
+          ],
+          "required": true
+        },
+        {
+          "name": "children",
+          "type": "any"
+        }
+      ]
+    },
+    {
+      "name": "Card",
+      "file": "src/design-system/components/data.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "variant",
+          "type": "enum",
+          "values": [
+            "default",
+            "muted"
+          ],
+          "default": "default"
+        },
+        {
+          "name": "padding",
+          "type": "enum",
+          "values": [
+            "none",
+            "default"
+          ],
+          "default": "default"
+        },
+        {
+          "name": "interactive",
+          "type": "boolean"
+        },
+        {
+          "name": "selected",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "StatCard",
+      "file": "src/design-system/components/data.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "value",
+          "type": "any",
+          "required": true
+        },
+        {
+          "name": "icon",
+          "type": "any"
+        },
+        {
+          "name": "trend",
+          "type": "any"
+        }
+      ]
+    },
+    {
+      "name": "DataTable",
+      "file": "src/design-system/components/data.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "columns",
+          "type": "any",
+          "required": true
+        },
+        {
+          "name": "rows",
+          "type": "any",
+          "required": true
+        },
+        {
+          "name": "getRowKey",
+          "type": "function",
+          "required": true
+        },
+        {
+          "name": "onRowClick",
+          "type": "function"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "default": "ds-badge__dot"
+        },
+        {
+          "name": "caption",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "Avatar",
+      "file": "src/design-system/components/data.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "src",
+          "type": "string"
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "values": [
+            "sm",
+            "md",
+            "lg"
+          ],
+          "default": "sm"
+        }
+      ]
+    },
+    {
+      "name": "Alert",
+      "file": "src/design-system/components/feedback.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "tone",
+          "type": "enum",
+          "values": [
+            "info",
+            "success",
+            "warning",
+            "error"
+          ],
+          "default": "info"
+        },
+        {
+          "name": "title",
+          "type": "any"
+        }
+      ]
+    },
+    {
+      "name": "Toast",
+      "file": "src/design-system/components/feedback.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "tone",
+          "type": "enum",
+          "values": [
+            "info",
+            "success",
+            "warning",
+            "error"
+          ],
+          "default": "info"
+        },
+        {
+          "name": "onDismiss",
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "name": "Skeleton",
+      "file": "src/design-system/components/feedback.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "shape",
+          "type": "enum",
+          "values": [
+            "text",
+            "block",
+            "circle"
+          ],
+          "default": "text"
+        },
+        {
+          "name": "width",
+          "type": "any"
+        }
+      ]
+    },
+    {
+      "name": "EmptyState",
+      "file": "src/design-system/components/feedback.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "icon",
+          "type": "any",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "action",
+          "type": "any"
+        }
+      ]
+    },
+    {
+      "name": "Modal",
+      "file": "src/design-system/components/feedback.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "onClose",
+          "type": "function",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "values": [
+            "sm",
+            "md",
+            "lg",
+            "full"
+          ],
+          "default": "sm"
+        },
+        {
+          "name": "footer",
+          "type": "any"
+        },
+        {
+          "name": "children",
+          "type": "any"
+        },
+        {
+          "name": "className",
+          "type": "string",
+          "default": "ds-alert__title"
+        }
+      ]
+    },
+    {
+      "name": "ConfirmDialog",
+      "file": "src/design-system/components/feedback.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "confirmLabel",
+          "type": "string",
+          "default": "Confirm"
+        },
+        {
+          "name": "destructive",
+          "type": "boolean"
+        },
+        {
+          "name": "onConfirm",
+          "type": "function",
+          "required": true
+        },
+        {
+          "name": "onCancel",
+          "type": "function",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "ImageCard",
+      "file": "src/design-system/components/media.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "src",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "alt",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "filename",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "kind",
+          "type": "enum",
+          "values": [
+            "thermal",
+            "visual"
+          ]
+        },
+        {
+          "name": "severity",
+          "type": "any"
+        },
+        {
+          "name": "meta",
+          "type": "any"
+        },
+        {
+          "name": "actions",
+          "type": "any"
+        },
+        {
+          "name": "selected",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "ProgressBar",
+      "file": "src/design-system/components/media.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "default": "Uploaded"
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "detail",
+          "type": "any"
+        },
+        {
+          "name": "tone",
+          "type": "enum",
+          "values": [
+            "brand",
+            "success"
+          ],
+          "default": "brand"
+        },
+        {
+          "name": "size",
+          "type": "enum",
+          "values": [
+            "sm",
+            "md"
+          ],
+          "default": "md"
+        }
+      ]
+    },
+    {
+      "name": "DropZone",
+      "file": "src/design-system/components/media.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "onFiles",
+          "type": "function",
+          "required": true
+        },
+        {
+          "name": "accept",
+          "type": "string",
+          "default": "image/*"
+        },
+        {
+          "name": "multiple",
+          "type": "boolean",
+          "default": "true"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "default": "Drop images here or click to browse"
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "default": "JPG, PNG, TIFF · up to 500 images"
+        }
+      ]
+    },
+    {
+      "name": "UploadItem",
+      "file": "src/design-system/components/media.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "filename",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "sizeLabel",
+          "type": "string"
+        },
+        {
+          "name": "progress",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "state",
+          "type": "enum",
+          "values": [
+            "uploading",
+            "done",
+            "error"
+          ],
+          "required": true
+        },
+        {
+          "name": "thumbnail",
+          "type": "string"
+        },
+        {
+          "name": "onRemove",
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "name": "AppShell",
+      "file": "src/design-system/components/layout.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "sidebar",
+          "type": "any",
+          "required": true
+        },
+        {
+          "name": "topbar",
+          "type": "any"
+        }
+      ]
+    },
+    {
+      "name": "Sidebar",
+      "file": "src/design-system/components/layout.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "brand",
+          "type": "any"
+        }
+      ]
+    },
+    {
+      "name": "SidebarSection",
+      "file": "src/design-system/components/layout.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "heading",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "NavItem",
+      "file": "src/design-system/components/layout.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "icon",
+          "type": "any"
+        },
+        {
+          "name": "active",
+          "type": "boolean"
+        }
+      ]
+    },
+    {
+      "name": "Topbar",
+      "file": "src/design-system/components/layout.tsx",
+      "import_path": ""
+    },
+    {
+      "name": "PageContainer",
+      "file": "src/design-system/components/layout.tsx",
+      "import_path": ""
+    },
+    {
+      "name": "PageHeader",
+      "file": "src/design-system/components/layout.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "actions",
+          "type": "any"
+        }
+      ]
+    },
+    {
+      "name": "Tabs",
+      "file": "src/design-system/components/layout.tsx",
+      "import_path": "",
+      "props": [
+        {
+          "name": "items",
+          "type": "any",
+          "required": true
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "onChange",
+          "type": "function",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
