@@ -18,6 +18,7 @@ export type Database = {
         Row: {
           analysis_state: string
           analyzed_at: string | null
+          area: string | null
           confidence: number | null
           created_at: string
           error: string | null
@@ -26,17 +27,22 @@ export type Database = {
           inspection_id: string
           kind: string
           location_label: string | null
+          pair_key: string | null
           recommendation: string | null
+          room: string | null
           section: string | null
           severity: Database["public"]["Enums"]["finding_severity"] | null
           size_bytes: number | null
           storage_path: string
           summary: string | null
+          thermal_observation: string | null
           user_id: string
+          visual_observation: string | null
         }
         Insert: {
           analysis_state?: string
           analyzed_at?: string | null
+          area?: string | null
           confidence?: number | null
           created_at?: string
           error?: string | null
@@ -45,17 +51,22 @@ export type Database = {
           inspection_id: string
           kind?: string
           location_label?: string | null
+          pair_key?: string | null
           recommendation?: string | null
+          room?: string | null
           section?: string | null
           severity?: Database["public"]["Enums"]["finding_severity"] | null
           size_bytes?: number | null
           storage_path: string
           summary?: string | null
+          thermal_observation?: string | null
           user_id: string
+          visual_observation?: string | null
         }
         Update: {
           analysis_state?: string
           analyzed_at?: string | null
+          area?: string | null
           confidence?: number | null
           created_at?: string
           error?: string | null
@@ -64,13 +75,17 @@ export type Database = {
           inspection_id?: string
           kind?: string
           location_label?: string | null
+          pair_key?: string | null
           recommendation?: string | null
+          room?: string | null
           section?: string | null
           severity?: Database["public"]["Enums"]["finding_severity"] | null
           size_bytes?: number | null
           storage_path?: string
           summary?: string | null
+          thermal_observation?: string | null
           user_id?: string
+          visual_observation?: string | null
         }
         Relationships: [
           {
@@ -84,37 +99,79 @@ export type Database = {
       }
       inspections: {
         Row: {
+          city: string | null
+          client_email: string | null
+          client_name: string | null
+          client_phone: string | null
           created_at: string
+          current_step: number
+          home_age: string | null
           id: string
+          inspection_date: string | null
+          inspection_time: string | null
           inspector_name: string | null
           notes: string | null
+          pin_code: string | null
           property_address: string | null
+          property_size: string | null
+          property_type: string | null
+          state: string | null
           status: Database["public"]["Enums"]["inspection_status"]
+          template_id: string | null
           title: string
           updated_at: string
           user_id: string
+          weather: string | null
         }
         Insert: {
+          city?: string | null
+          client_email?: string | null
+          client_name?: string | null
+          client_phone?: string | null
           created_at?: string
+          current_step?: number
+          home_age?: string | null
           id?: string
+          inspection_date?: string | null
+          inspection_time?: string | null
           inspector_name?: string | null
           notes?: string | null
+          pin_code?: string | null
           property_address?: string | null
+          property_size?: string | null
+          property_type?: string | null
+          state?: string | null
           status?: Database["public"]["Enums"]["inspection_status"]
+          template_id?: string | null
           title: string
           updated_at?: string
           user_id: string
+          weather?: string | null
         }
         Update: {
+          city?: string | null
+          client_email?: string | null
+          client_name?: string | null
+          client_phone?: string | null
           created_at?: string
+          current_step?: number
+          home_age?: string | null
           id?: string
+          inspection_date?: string | null
+          inspection_time?: string | null
           inspector_name?: string | null
           notes?: string | null
+          pin_code?: string | null
           property_address?: string | null
+          property_size?: string | null
+          property_type?: string | null
+          state?: string | null
           status?: Database["public"]["Enums"]["inspection_status"]
+          template_id?: string | null
           title?: string
           updated_at?: string
           user_id?: string
+          weather?: string | null
         }
         Relationships: []
       }
@@ -139,6 +196,36 @@ export type Database = {
           email?: string | null
           full_name?: string | null
           id?: string
+        }
+        Relationships: []
+      }
+      templates: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          name: string
+          sections: Json
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          id?: string
+          name: string
+          sections?: Json
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          name?: string
+          sections?: Json
+          updated_at?: string
+          user_id?: string | null
         }
         Relationships: []
       }

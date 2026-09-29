@@ -15,6 +15,13 @@
       "when": 1790699647523,
       "tag": "0001_inspection_images_storage_policies",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1790705160923,
+      "tag": "0002_templates_and_flow_fields",
+      "breakpoints": true
     }
   ]
 }
