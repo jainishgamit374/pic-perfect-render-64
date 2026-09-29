@@ -29,6 +29,13 @@
       "when": 1790708346186,
       "tag": "0003_add_report_style",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1790710501200,
+      "tag": "0004_add_report_customization",
+      "breakpoints": true
     }
   ]
 }

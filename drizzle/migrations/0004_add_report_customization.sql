@@ -1,0 +1,1 @@
+ALTER TABLE public.inspections ADD COLUMN report_cover_title text, ADD COLUMN report_cover_subtitle text, ADD COLUMN report_company text, ADD COLUMN report_footer text, ADD COLUMN report_logo_path text, ADD COLUMN report_brand_primary text, ADD COLUMN report_brand_secondary text;
