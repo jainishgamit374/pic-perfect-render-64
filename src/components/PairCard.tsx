@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 import { Trash2 } from "lucide-react";
-import { Card, IconButton, ImageCard, type SeverityBadge } from "@/design-system/gentle-code-library-71de11";
+import { Card, IconButton, ImageCard } from "@/design-system/gentle-code-library-71de11";
 import type { PhotoPair } from "@/lib/flow";
 import type { InspectionImage } from "@/lib/inspections";
 
-type Severity = NonNullable<Parameters<typeof SeverityBadge>[0]["severity"]>;
+type Severity = "normal" | "minor" | "moderate" | "defective" | "critical";
 
 /** Thermal + visual photos of one spot side by side, with optional content below. */
 export function PairCard({
