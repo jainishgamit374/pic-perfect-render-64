@@ -59,7 +59,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
           </NavItem>
         ))}
       </SidebarSection>
-      <div className="app-sidebar-account"><Avatar name={user?.email ?? "Inspector" /><span className="ds-body-sm">{user?.email ?? "Inspector"}</span></div>
+      <div className="app-sidebar-account"><Avatar name={user?.email ?? "Inspector"} /><span className="ds-body-sm">{user?.email ?? "Inspector"}</span></div>
     </Sidebar>
   );
 
