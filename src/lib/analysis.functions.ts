@@ -16,7 +16,10 @@ Return ONLY a JSON object, no markdown fences, with exactly these keys:
 }
 Keep the summary under 320 characters. If the photo shows no defect, use severity "normal".`;
 
-async function callGateway(imageUrl: string): Promise<string> {
+async function callGateway(imageUrl: string, rooms: string[] = []): Promise<string> {
+  const roomHint = rooms.length
+    ? `\nAlso include a key "room": pick the best match from this list of rooms: ${rooms.join(", ")}. Use "" if none fit.`
+    : "";
   const apiKey = process.env["LOVABLE_API_KEY"];
   if (!apiKey) throw new Error("AI is not configured for this project.");
 
@@ -36,7 +39,7 @@ async function callGateway(imageUrl: string): Promise<string> {
         {
           role: "user",
           content: [
-            { type: "input_text", text: PROMPT },
+            { type: "input_text", text: PROMPT + roomHint },
             { type: "input_image", image_url: imageUrl },
           ],
         },
@@ -93,6 +96,7 @@ function parseResult(raw: string) {
     severity: (SEVERITIES as readonly string[]).includes(severity) ? severity : "normal",
     summary: typeof parsed["summary"] === "string" ? parsed["summary"] : "No description returned.",
     recommendation: typeof parsed["recommendation"] === "string" ? parsed["recommendation"] : null,
+    room: typeof parsed["room"] === "string" && parsed["room"] ? parsed["room"] : null,
     confidence: typeof parsed["confidence"] === "number" ? Math.max(0, Math.min(1, parsed["confidence"])) : null,
   };
 }
@@ -100,7 +104,7 @@ function parseResult(raw: string) {
 /** Analyses exactly one image. The client drives a bounded queue over these calls. */
 export const analyzeInspectionImage = createServerFn({ method: "POST" })
   .middleware([requireSupabaseAuth])
-  .inputValidator((input: unknown) => z.object({ imageId: z.string().uuid() }).parse(input))
+  .inputValidator((input: unknown) => z.object({ imageId: z.string().uuid(), rooms: z.array(z.string().max(120)).max(100).optional() }).parse(input))
   .handler(async ({ data, context }) => {
     const { supabase, userId } = context;
 
@@ -124,7 +128,7 @@ export const analyzeInspectionImage = createServerFn({ method: "POST" })
         .createSignedUrl(image.storage_path, 600);
       if (signed.error || !signed.data) throw new Error("Could not read the uploaded photo.");
 
-      const result = parseResult(await callGateway(signed.data.signedUrl));
+      const result = parseResult(await callGateway(signed.data.signedUrl, data.rooms ?? []));
 
       const { error: updateError } = await supabase
         .from("inspection_images")
@@ -137,6 +141,7 @@ export const analyzeInspectionImage = createServerFn({ method: "POST" })
           summary: result.summary,
           recommendation: result.recommendation,
           confidence: result.confidence,
+          room: result.room,
           error: null,
         })
         .eq("id", image.id)
