@@ -193,6 +193,7 @@ a.app-step__link:hover .app-step__label { text-decoration: underline; }
 .app-dashboard-focus p { margin-top: var(--ds-space-xs); }
 .app-dashboard-activity { display: grid; gap: var(--ds-space-base); }
 .app-dashboard-key { display: grid; gap: var(--ds-space-sm); padding-top: var(--ds-space-lg); border-top: 1px solid var(--ds-color-border); }
+.app-inspections-tools { gap: var(--ds-space-base); }
 .app-grid-stats .ds-stat { min-width: 0; }
 .app-report-heading { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: var(--ds-space-lg); }
 .app-report-heading h1 { margin-top: var(--ds-space-xs); }
@@ -221,6 +222,6 @@ a.app-step__link:hover .app-step__label { text-decoration: underline; }
 .app-print-only { display: none; }
 @media (max-width: 1024px) { .ds-shell__main { position: relative; } .app-mobile-menu { display: inline-flex; } .app-mobile-nav { display: grid; gap: var(--ds-space-xs); position: absolute; top: var(--ds-topbar-height); left: 0; right: 0; padding: var(--ds-space-base); background: var(--ds-color-surface); border-bottom: 1px solid var(--ds-color-border); box-shadow: var(--ds-shadow-md); z-index: 10; } }
 @media (max-width: 1100px) { .app-report-workspace { grid-template-columns: minmax(0, 1fr); } .app-report-preview { position: static; } }
-@media (max-width: 700px) { .app-dashboard-focus { flex-direction: column; align-items: start; } .app-dashboard-activity > .app-row { flex-direction: column; align-items: stretch; } .app-report-preview-sheet { justify-content: start; } }
+@media (max-width: 700px) { .app-dashboard-focus { flex-direction: column; align-items: start; } .app-dashboard-activity > .app-row, .app-inspections-tools { flex-direction: column; align-items: stretch; } .app-inspections-tools .ds-tabs { overflow-x: auto; max-width: 100%; } .app-report-preview-sheet { justify-content: start; } }
 @media (prefers-reduced-motion: reduce) { .app-studio-page { animation: none; } }
 @media print { .app-report-workspace, .app-report-heading, .app-report-notices { display: none !important; } .app-print-only { display: flex !important; } .ds-page { padding: 0 !important; margin: 0 !important; max-width: none !important; gap: 0 !important; } body, .ds-shell { background: var(--ds-color-surface) !important; } }
