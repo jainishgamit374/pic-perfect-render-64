@@ -1,7 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useMemo, useState, type KeyboardEvent } from "react";
-import { ArrowLeft, ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Eye, Maximize2, Minimize2, ZoomIn, ZoomOut } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Maximize2, Minimize2, ZoomIn, ZoomOut } from "lucide-react";
 import {
   Alert, Badge, Button, IconButton, Modal, PageContainer, PageHeader, Skeleton,
 } from "@/design-system/gentle-code-library-71de11";
@@ -36,6 +36,8 @@ function DesignStep() {
   const [selected, setSelected] = useState<StyleId | null>(null);
   const [preview, setPreview] = useState<StyleId | null>(null);
   const [page, setPage] = useState(0);
+  const [active, setActive] = useState<StyleId>("editorial");
+  const [canvasPage, setCanvasPage] = useState(0);
   const [zoom, setZoom] = useState(0.7);
   const [full, setFull] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -43,20 +45,21 @@ function DesignStep() {
 
   useEffect(() => {
     const s = (inspection.data as { report_style?: string } | undefined)?.report_style;
-    if (s && styleMeta(s) && (inspection.data?.current_step ?? 0) >= 6) setSelected(s as StyleId);
+    if (s && styleMeta(s) && (inspection.data?.current_step ?? 0) >= 6) { setSelected(s as StyleId); setActive(s as StyleId); }
   }, [inspection.data]);
 
   const data = useMemo(() => buildReportData(inspection.data, groupPairs(rows), urls), [inspection.data, rows, urls]);
+  const activePages = useMemo(() => renderReportPages(active, data), [active, data]);
   const previewPages = useMemo(() => (preview ? renderReportPages(preview, data) : []), [preview, data]);
 
-  function openPreview(s: StyleId) { setPreview(s); setPage(0); }
+  function choose(s: StyleId) { setSelected(s); setActive(s); setCanvasPage(0); }
   function onGridKey(e: KeyboardEvent) {
     const idx = REPORT_STYLES.findIndex((s) => s.id === selected);
     const d = e.key === "ArrowRight" || e.key === "ArrowDown" ? 1 : e.key === "ArrowLeft" || e.key === "ArrowUp" ? -1 : 0;
     if (!d) return;
     e.preventDefault();
     const next = REPORT_STYLES[(Math.max(idx, 0) + d + REPORT_STYLES.length) % REPORT_STYLES.length]!;
-    setSelected(next.id);
+    choose(next.id);
     document.getElementById(`design-${next.id}`)?.focus();
   }
 
@@ -74,6 +77,7 @@ function DesignStep() {
   if (inspection.isLoading || images.isLoading) return <AppLayout><PageContainer><Skeleton shape="block" /></PageContainer></AppLayout>;
   const sel = styleMeta(selected);
   const pm = styleMeta(preview);
+  const am = styleMeta(active);
 
   return (
     <AppLayout>
@@ -86,38 +90,72 @@ function DesignStep() {
         <StepTracker active={5} reached={inspection.data?.current_step ?? 5} id={id} />
         {error && <Alert tone="error" title="Could not save your choice">{error} Please try again.</Alert>}
 
-        <div className="app-design-grid" role="radiogroup" aria-label="Report designs" onKeyDown={onGridKey}>
-          {REPORT_STYLES.map((s) => {
-            const on = selected === s.id;
-            const cover = renderReportPages(s.id, data)[0];
-            return (
-              <div
-                key={s.id}
-                id={`design-${s.id}`}
-                role="radio"
-                aria-checked={on}
-                tabIndex={on || (!selected && s.id === "editorial") ? 0 : -1}
-                className="app-design-card"
-                onClick={() => setSelected(s.id)}
-                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelected(s.id); } }}
-              >
-                <div className="app-design-thumb"><ScaledPage scale={0.28}>{cover}</ScaledPage></div>
-                <div className="app-stack">
-                  <div className="app-stack-sm">
-                    <span className="app-design-letter" aria-hidden>{s.letter}</span>
-                    <h2 className="ds-h3">{s.name}</h2>
-                    <p className="ds-body-sm">{s.description}</p>
+        <div className="app-studio">
+          <nav className="app-studio-rail" aria-label="Report designs">
+            <span className="ds-caption">{REPORT_STYLES.length} DESIGNS</span>
+            <div role="radiogroup" aria-label="Report designs" className="app-stack-sm" onKeyDown={onGridKey}>
+              {REPORT_STYLES.map((s) => {
+                const on = selected === s.id;
+                return (
+                  <div
+                    key={s.id}
+                    id={`design-${s.id}`}
+                    role="radio"
+                    aria-checked={on}
+                    data-active={active === s.id}
+                    tabIndex={on || (!selected && s.id === "editorial") ? 0 : -1}
+                    className="app-studio-item"
+                    onClick={() => choose(s.id)}
+                    onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); choose(s.id); } }}
+                  >
+                    <div className="app-design-thumb"><ScaledPage scale={0.1}>{renderReportPages(s.id, data)[0]}</ScaledPage></div>
+                    <div className="app-stack-sm">
+                      <strong className="ds-body-sm">{s.letter}. {s.name}</strong>
+                      <span className="ds-caption">{s.tags.slice(0, 2).join(" · ")}</span>
+                      {on && <span className="app-design-check"><CheckCircle2 aria-hidden /> Selected</span>}
+                    </div>
                   </div>
-                  <span className="app-row">{s.tags.map((t) => <Badge key={t} tone="neutral">{t}</Badge>)}</span>
-                  {on && <span className="app-design-check"><CheckCircle2 aria-hidden /> Selected</span>}
-                  <span className="app-row">
-                    <Button size="sm" variant="secondary" leadingIcon={<Eye />} onClick={(e) => { e.stopPropagation(); openPreview(s.id); }}>Preview</Button>
-                    <Button size="sm" variant={on ? "primary" : "ghost"} onClick={(e) => { e.stopPropagation(); setSelected(s.id); }}>{on ? "Selected" : "Select"}</Button>
-                  </span>
+                );
+              })}
+            </div>
+          </nav>
+
+          <section className="app-studio-canvas" aria-label="Live preview">
+            <div className="app-row app-row--between">
+              <span className="app-row">
+                <IconButton label="Previous page" variant="ghost" icon={<ChevronLeft />} disabled={canvasPage === 0} onClick={() => setCanvasPage((p) => p - 1)} />
+                <span className="ds-body-sm">Page {canvasPage + 1} of {activePages.length}</span>
+                <IconButton label="Next page" variant="ghost" icon={<ChevronRight />} disabled={canvasPage >= activePages.length - 1} onClick={() => setCanvasPage((p) => p + 1)} />
+              </span>
+              <Button size="sm" variant="ghost" leadingIcon={<Maximize2 />} onClick={() => { setPreview(active); setPage(canvasPage); }}>Full preview</Button>
+            </div>
+            <div key={`${active}-${canvasPage}`} className="app-studio-page">
+              <ScaledPage scale={0.62}>{activePages[canvasPage]}</ScaledPage>
+            </div>
+          </section>
+
+          <aside className="app-studio-meta">
+            {am && (
+              <div className="app-stack">
+                <div className="app-stack-sm">
+                  <span className="app-design-letter" aria-hidden>{am.letter}</span>
+                  <h2 className="ds-h2">{am.name}</h2>
+                  <p className="ds-body-sm">{am.description}</p>
                 </div>
+                <span className="app-row">{am.tags.map((t) => <Badge key={t} tone="neutral">{t}</Badge>)}</span>
+                <dl className="app-studio-dl">
+                  <dt className="ds-caption">Pages</dt><dd className="ds-body-sm">{activePages.length}</dd>
+                  <dt className="ds-caption">Format</dt><dd className="ds-body-sm">A4 portrait</dd>
+                  <dt className="ds-caption">Findings</dt><dd className="ds-body-sm">{data.findings.length}</dd>
+                </dl>
+                {selected === active ? (
+                  <span className="app-design-check"><CheckCircle2 aria-hidden /> This design is selected</span>
+                ) : (
+                  <Button leadingIcon={<CheckCircle2 />} onClick={() => choose(active)}>Use this design</Button>
+                )}
               </div>
-            );
-          })}
+            )}
+          </aside>
         </div>
 
         <div className="app-continue-bar">
