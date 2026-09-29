@@ -166,3 +166,4 @@ a.app-step__link:hover .app-step__label { text-decoration: underline; }
   .app-report-finding .app-pair { break-inside: avoid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   h2.ds-h2 { break-after: avoid; }
 }
+.app-fill { width: 100%; }

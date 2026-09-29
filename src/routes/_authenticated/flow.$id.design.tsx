@@ -135,7 +135,7 @@ function DesignStep() {
         title={pm ? `${pm.letter}. ${pm.name}` : ""}
         description={pm?.description}
         footer={
-          <div className="app-row app-row--between" style={{ width: "100%" }}>
+          <div className="app-row app-row--between app-fill">
             <span className="app-row">
               <IconButton label="Previous page" variant="ghost" icon={<ChevronLeft />} disabled={page === 0} onClick={() => setPage((p) => p - 1)} />
               <span className="ds-body-sm">Page {page + 1} of {previewPages.length}</span>
