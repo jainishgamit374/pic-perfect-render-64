@@ -1,4 +1,21 @@
 @import "./design-system/gentle-code-library-71de11/design-system/styles/theme.css";
+@import "./components/report-styles/report-styles.css";
+
+/* Report design picker */
+.app-design-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--ds-space-lg); }
+.app-design-card { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--ds-space-lg); padding: var(--ds-space-base); background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-lg); cursor: pointer; transition: border-color 0.15s, box-shadow 0.15s; position: relative; }
+.app-design-card:hover { border-color: var(--ds-color-border-strong); box-shadow: var(--ds-shadow-sm); }
+.app-design-card:focus-visible { outline: 2px solid var(--ds-color-focus-ring); outline-offset: 2px; }
+.app-design-card[aria-checked="true"] { border-color: var(--ds-brand-500); box-shadow: 0 0 0 2px var(--ds-brand-500); }
+.app-design-thumb { border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-md); overflow: hidden; }
+.app-design-check { display: inline-flex; align-items: center; gap: var(--ds-space-xs); color: var(--ds-brand-500); font-weight: 600; font-size: var(--ds-text-body-sm); }
+.app-design-check svg { width: 1.1em; height: 1.1em; }
+.app-design-letter { font-size: var(--ds-text-h1); font-weight: 700; color: var(--ds-color-text-muted); line-height: 1; }
+.app-continue-bar { position: sticky; bottom: 0; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: var(--ds-space-base); padding: var(--ds-space-base) var(--ds-space-lg); background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-lg); box-shadow: var(--ds-shadow-md); }
+.app-preview-stage { display: flex; justify-content: center; overflow: auto; background: var(--ds-color-background); border-radius: var(--ds-radius-md); padding: var(--ds-space-lg); max-height: 100%; }
+.app-report-stack { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-lg); }
+@media (max-width: 1100px) { .app-design-grid { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 600px) { .app-design-card { grid-template-columns: minmax(0, 1fr); } }
 
 /* App-level layout helpers only — all values come from design-system tokens. */
 .app-stack {
