@@ -6,6 +6,7 @@ const STEPS = [
   { label: "Upload images", to: "/flow/$id/upload" },
   { label: "AI analysis", to: "/flow/$id/analysis" },
   { label: "Review & edit", to: "/flow/$id/review" },
+  { label: "Report design", to: "/flow/$id/design" },
   { label: "Final report", to: "/flow/$id/report" },
 ] as const;
 

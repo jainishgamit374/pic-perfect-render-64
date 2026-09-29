@@ -72,6 +72,7 @@ export const STEP_PATHS = [
   "/flow/$id/upload",
   "/flow/$id/analysis",
   "/flow/$id/review",
+  "/flow/$id/design",
   "/flow/$id/report",
 ] as const;
 

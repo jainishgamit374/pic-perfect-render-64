@@ -93,7 +93,7 @@ function ReviewStep() {
     await setStep(id, 5);
     await supabase.from("inspections").update({ status: "completed" }).eq("id", id);
     await queryClient.invalidateQueries({ queryKey: ["inspection", id] });
-    navigate({ to: "/flow/$id/report", params: { id } });
+    navigate({ to: "/flow/$id/design", params: { id } });
   }
 
   if (inspection.isLoading || images.isLoading) return <AppLayout><PageContainer><Skeleton shape="block" /></PageContainer></AppLayout>;
@@ -132,7 +132,7 @@ function ReviewStep() {
 
         <div className="app-row app-row--between app-footer">
           <Button variant="ghost" onClick={() => navigate({ to: "/flow/$id/upload", params: { id } })}>Back to photos</Button>
-          <Button trailingIcon={<ArrowRight />} disabled={pairs.length === 0} onClick={() => void next()}>Create final report</Button>
+          <Button trailingIcon={<ArrowRight />} disabled={pairs.length === 0} onClick={() => void next()}>Choose report design</Button>
         </div>
       </PageContainer>
     </AppLayout>

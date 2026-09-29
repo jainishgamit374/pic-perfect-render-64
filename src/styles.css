@@ -111,7 +111,7 @@
 }
 
 /* ---- 5-step flow ---- */
-.app-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--ds-space-sm); background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-lg); padding: var(--ds-space-base); }
+.app-steps { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--ds-space-sm); background: var(--ds-color-surface); border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-lg); padding: var(--ds-space-base); }
 .app-step__link { display: flex; flex-direction: column; align-items: center; gap: var(--ds-space-xs); text-align: center; color: var(--ds-color-text-muted); text-decoration: none; }
 .app-step__dot { display: inline-flex; align-items: center; justify-content: center; width: var(--ds-control-sm); height: var(--ds-control-sm); border-radius: var(--ds-radius-full); border: 1px solid var(--ds-color-border-strong); font-size: var(--ds-text-body-sm); font-weight: 600; background: var(--ds-color-surface); }
 .app-step__dot svg { width: 1em; height: 1em; }
@@ -155,7 +155,7 @@ a.app-step__link:hover .app-step__label { text-decoration: underline; }
 .app-report-photo { margin: 0; display: grid; gap: var(--ds-space-xs); }
 .app-report-photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--ds-radius-md); }
 @media (max-width: 900px) {
-  .app-steps { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .app-steps { grid-template-columns: repeat(6, minmax(0, 1fr)); }
   .app-step__state { display: none; }
   .app-form-grid, .app-pair, .app-template-layout { grid-template-columns: minmax(0, 1fr); }
 }
