@@ -9,56 +9,62 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthenticatedTemplatesRouteImport } from './routes/_authenticated/templates'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
-import { Route as AuthenticatedInspectionsIndexRouteImport } from './routes/_authenticated/inspections.index'
-import { Route as AuthenticatedInspectionsNewRouteImport } from './routes/_authenticated/inspections.new'
-import { Route as AuthenticatedInspectionsIdRouteImport } from './routes/_authenticated/inspections.$id'
-import { Route as Char91__mockupChar93PreviewSplatRouteImport } from './routes/[__mockup].preview.$'
+import { Route as AuthenticatedTemplatesRouteImport } from './routes/_authenticated/templates'
 import { Route as Char91__componentChar93PreviewSplatRouteImport } from './routes/[__component].preview.$'
-import { Route as AuthenticatedFlowIdUploadRouteImport } from './routes/_authenticated/flow.$id.upload'
-import { Route as AuthenticatedFlowIdReviewRouteImport } from './routes/_authenticated/flow.$id.review'
-import { Route as AuthenticatedFlowIdReportRouteImport } from './routes/_authenticated/flow.$id.report'
-import { Route as AuthenticatedFlowIdDesignRouteImport } from './routes/_authenticated/flow.$id.design'
+import { Route as Char91__mockupChar93PreviewSplatRouteImport } from './routes/[__mockup].preview.$'
+import { Route as AuthenticatedInspectionsIndexRouteImport } from './routes/_authenticated/inspections.index'
+import { Route as AuthenticatedInspectionsIdRouteImport } from './routes/_authenticated/inspections.$id'
+import { Route as AuthenticatedInspectionsNewRouteImport } from './routes/_authenticated/inspections.new'
 import { Route as AuthenticatedFlowIdAnalysisRouteImport } from './routes/_authenticated/flow.$id.analysis'
+import { Route as AuthenticatedFlowIdDesignRouteImport } from './routes/_authenticated/flow.$id.design'
+import { Route as AuthenticatedFlowIdReportRouteImport } from './routes/_authenticated/flow.$id.report'
+import { Route as AuthenticatedFlowIdReviewRouteImport } from './routes/_authenticated/flow.$id.review'
+import { Route as AuthenticatedFlowIdUploadRouteImport } from './routes/_authenticated/flow.$id.upload'
 
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
-} as any)
-const AuthenticatedTemplatesRoute = AuthenticatedTemplatesRouteImport.update({
-  id: '/templates',
-  path: '/templates',
-  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedTemplatesRoute = AuthenticatedTemplatesRouteImport.update({
+  id: '/templates',
+  path: '/templates',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const Char91__componentChar93PreviewSplatRoute =
+  Char91__componentChar93PreviewSplatRouteImport.update({
+    id: '/__component/preview/$',
+    path: '/__component/preview/$',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const Char91__mockupChar93PreviewSplatRoute =
+  Char91__mockupChar93PreviewSplatRouteImport.update({
+    id: '/__mockup/preview/$',
+    path: '/__mockup/preview/$',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthenticatedInspectionsIndexRoute =
   AuthenticatedInspectionsIndexRouteImport.update({
     id: '/inspections/',
     path: '/inspections/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedInspectionsNewRoute =
-  AuthenticatedInspectionsNewRouteImport.update({
-    id: '/inspections/new',
-    path: '/inspections/new',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedInspectionsIdRoute =
@@ -67,34 +73,16 @@ const AuthenticatedInspectionsIdRoute =
     path: '/inspections/$id',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const Char91__mockupChar93PreviewSplatRoute =
-  Char91__mockupChar93PreviewSplatRouteImport.update({
-    id: '/__mockup/preview/$',
-    path: '/__mockup/preview/$',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const Char91__componentChar93PreviewSplatRoute =
-  Char91__componentChar93PreviewSplatRouteImport.update({
-    id: '/__component/preview/$',
-    path: '/__component/preview/$',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const AuthenticatedFlowIdUploadRoute =
-  AuthenticatedFlowIdUploadRouteImport.update({
-    id: '/flow/$id/upload',
-    path: '/flow/$id/upload',
+const AuthenticatedInspectionsNewRoute =
+  AuthenticatedInspectionsNewRouteImport.update({
+    id: '/inspections/new',
+    path: '/inspections/new',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedFlowIdReviewRoute =
-  AuthenticatedFlowIdReviewRouteImport.update({
-    id: '/flow/$id/review',
-    path: '/flow/$id/review',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedFlowIdReportRoute =
-  AuthenticatedFlowIdReportRouteImport.update({
-    id: '/flow/$id/report',
-    path: '/flow/$id/report',
+const AuthenticatedFlowIdAnalysisRoute =
+  AuthenticatedFlowIdAnalysisRouteImport.update({
+    id: '/flow/$id/analysis',
+    path: '/flow/$id/analysis',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedFlowIdDesignRoute =
@@ -103,10 +91,22 @@ const AuthenticatedFlowIdDesignRoute =
     path: '/flow/$id/design',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedFlowIdAnalysisRoute =
-  AuthenticatedFlowIdAnalysisRouteImport.update({
-    id: '/flow/$id/analysis',
-    path: '/flow/$id/analysis',
+const AuthenticatedFlowIdReportRoute =
+  AuthenticatedFlowIdReportRouteImport.update({
+    id: '/flow/$id/report',
+    path: '/flow/$id/report',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFlowIdReviewRoute =
+  AuthenticatedFlowIdReviewRouteImport.update({
+    id: '/flow/$id/review',
+    path: '/flow/$id/review',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedFlowIdUploadRoute =
+  AuthenticatedFlowIdUploadRouteImport.update({
+    id: '/flow/$id/upload',
+    path: '/flow/$id/upload',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 
@@ -222,11 +222,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -236,19 +236,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/templates': {
-      id: '/_authenticated/templates'
-      path: '/templates'
-      fullPath: '/templates'
-      preLoaderRoute: typeof AuthenticatedTemplatesRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
@@ -257,18 +250,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/templates': {
+      id: '/_authenticated/templates'
+      path: '/templates'
+      fullPath: '/templates'
+      preLoaderRoute: typeof AuthenticatedTemplatesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/__component/preview/$': {
+      id: '/__component/preview/$'
+      path: '/__component/preview/$'
+      fullPath: '/__component/preview/$'
+      preLoaderRoute: typeof Char91__componentChar93PreviewSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/__mockup/preview/$': {
+      id: '/__mockup/preview/$'
+      path: '/__mockup/preview/$'
+      fullPath: '/__mockup/preview/$'
+      preLoaderRoute: typeof Char91__mockupChar93PreviewSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/inspections/': {
       id: '/_authenticated/inspections/'
       path: '/inspections'
       fullPath: '/inspections/'
       preLoaderRoute: typeof AuthenticatedInspectionsIndexRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/inspections/new': {
-      id: '/_authenticated/inspections/new'
-      path: '/inspections/new'
-      fullPath: '/inspections/new'
-      preLoaderRoute: typeof AuthenticatedInspectionsNewRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/inspections/$id': {
@@ -278,39 +285,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedInspectionsIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/__mockup/preview/$': {
-      id: '/__mockup/preview/$'
-      path: '/__mockup/preview/$'
-      fullPath: '/__mockup/preview/$'
-      preLoaderRoute: typeof Char91__mockupChar93PreviewSplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/__component/preview/$': {
-      id: '/__component/preview/$'
-      path: '/__component/preview/$'
-      fullPath: '/__component/preview/$'
-      preLoaderRoute: typeof Char91__componentChar93PreviewSplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/flow/$id/upload': {
-      id: '/_authenticated/flow/$id/upload'
-      path: '/flow/$id/upload'
-      fullPath: '/flow/$id/upload'
-      preLoaderRoute: typeof AuthenticatedFlowIdUploadRouteImport
+    '/_authenticated/inspections/new': {
+      id: '/_authenticated/inspections/new'
+      path: '/inspections/new'
+      fullPath: '/inspections/new'
+      preLoaderRoute: typeof AuthenticatedInspectionsNewRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/flow/$id/review': {
-      id: '/_authenticated/flow/$id/review'
-      path: '/flow/$id/review'
-      fullPath: '/flow/$id/review'
-      preLoaderRoute: typeof AuthenticatedFlowIdReviewRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/flow/$id/report': {
-      id: '/_authenticated/flow/$id/report'
-      path: '/flow/$id/report'
-      fullPath: '/flow/$id/report'
-      preLoaderRoute: typeof AuthenticatedFlowIdReportRouteImport
+    '/_authenticated/flow/$id/analysis': {
+      id: '/_authenticated/flow/$id/analysis'
+      path: '/flow/$id/analysis'
+      fullPath: '/flow/$id/analysis'
+      preLoaderRoute: typeof AuthenticatedFlowIdAnalysisRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/flow/$id/design': {
@@ -320,11 +306,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedFlowIdDesignRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/flow/$id/analysis': {
-      id: '/_authenticated/flow/$id/analysis'
-      path: '/flow/$id/analysis'
-      fullPath: '/flow/$id/analysis'
-      preLoaderRoute: typeof AuthenticatedFlowIdAnalysisRouteImport
+    '/_authenticated/flow/$id/report': {
+      id: '/_authenticated/flow/$id/report'
+      path: '/flow/$id/report'
+      fullPath: '/flow/$id/report'
+      preLoaderRoute: typeof AuthenticatedFlowIdReportRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/flow/$id/review': {
+      id: '/_authenticated/flow/$id/review'
+      path: '/flow/$id/review'
+      fullPath: '/flow/$id/review'
+      preLoaderRoute: typeof AuthenticatedFlowIdReviewRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/flow/$id/upload': {
+      id: '/_authenticated/flow/$id/upload'
+      path: '/flow/$id/upload'
+      fullPath: '/flow/$id/upload'
+      preLoaderRoute: typeof AuthenticatedFlowIdUploadRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
   }
